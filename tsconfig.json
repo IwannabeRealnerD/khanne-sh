@@ -8,7 +8,8 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
-		"strictNullChecks": true
+		"strictNullChecks": true,
+		"module": "esnext"
 	},
 	"exclude": ["node_modules,tsconfig.json"]
 	// Path aliases are handled by https://kit.svelte.dev/docs/configuration#alias

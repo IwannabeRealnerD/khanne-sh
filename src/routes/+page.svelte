@@ -1,8 +1,8 @@
-<script>
+<script lang="ts">
 	import Heading from '$lib/components/heading.svelte';
 	import ButtonList from './page/testComponent/buttonList.svelte';
 	import ExplainSection from './page/testComponent/explain.svelte';
-	const href = 'https://kit.svelte.dev';
+	
 	const testArrayProps = [
 		"This is props that's given",
 		"This is props that's given",
@@ -11,6 +11,7 @@
 </script>
 
 <ExplainSection />
+
 <section class="sectionStyle">
 	<Heading titleString="map button" level={2} />
 	<ButtonList />

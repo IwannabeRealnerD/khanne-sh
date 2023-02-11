@@ -2,7 +2,6 @@
 	import Heading from '$lib/components/heading.svelte';
 
 	const href = 'https://kit.svelte.dev';
-	const testArray = ['hi', 'why', 'third'];
 </script>
 
 <div class="container">
