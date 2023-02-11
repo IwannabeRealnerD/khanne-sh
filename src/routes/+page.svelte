@@ -1,30 +1,29 @@
 <script>
-	import TestHeader from './page/testComponent/testHeader.svelte';
+	import Heading from '$lib/components/heading.svelte';
 	import ButtonList from './page/testComponent/buttonList.svelte';
+	import ExplainSection from './page/testComponent/explain.svelte';
 	const href = 'https://kit.svelte.dev';
-	const testArray = [
+	const testArrayProps = [
 		"This is props that's given",
 		"This is props that's given",
 		"This is props that's given"
 	];
 </script>
 
-<h1 class="titleStyle">mainPage</h1>
-<p class="main">Visit <a {href}>kit.svelte.dev</a> to read the documentation</p>
+<ExplainSection />
 <section class="sectionStyle">
-	<TestHeader titleString="map button" />
+	<Heading titleString="map button" level={2} />
 	<ButtonList />
-	<ButtonList arr={testArray} />
+	<ButtonList arr={testArrayProps} />
 </section>
 
 <style>
-	.titleStyle {
-		font-size: 2.5rem;
-		margin-bottom: 1rem;
-	}
 	.sectionStyle {
 		background-color: beige;
-		padding: 0.3rem 1rem 1rem 2rem;
+		padding: 1.5rem;
 		margin-bottom: 2rem;
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem 0;
 	}
 </style>

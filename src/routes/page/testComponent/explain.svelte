@@ -1,16 +1,17 @@
 <script>
-	import TestHeader from './page/testComponent/testHeader.svelte';
-	import Map from './page/testComponent/map.svelte';
+	import Heading from '$lib/components/heading.svelte';
+
 	const href = 'https://kit.svelte.dev';
 	const testArray = ['hi', 'why', 'third'];
 </script>
 
-<h1 class="titleStyle">mainPage</h1>
-<p class="main">Visit <a {href}>kit.svelte.dev</a> to read the documentation</p>
+<div class="container">
+	<Heading titleString="Main Page" level={1} />
+	<p>Visit <a {href}>kit.svelte.dev</a> to read the documentation</p>
+</div>
 
 <style>
-	.titleStyle {
-		font-size: 2.5rem;
-		margin-bottom: 1rem;
+	.container {
+		margin-bottom: 2rem;
 	}
 </style>

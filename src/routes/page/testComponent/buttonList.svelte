@@ -14,7 +14,6 @@
 
 <style>
 	.buttonContainer {
-		margin-bottom: 1.5rem;
 		display: flex;
 		gap: 0 1rem;
 	}
