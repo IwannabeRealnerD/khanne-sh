@@ -1,5 +1,5 @@
-<script>
-	import Heading from '$lib/components/heading.svelte';
+<script lang="ts">
+	import Heading from '$/lib/common/commonHeading.svelte';
 
 	const href = 'https://kit.svelte.dev';
 </script>

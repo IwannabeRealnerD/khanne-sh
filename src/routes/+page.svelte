@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Heading from '$lib/components/heading.svelte';
+	import Heading from '$/lib/common/commonHeading.svelte';
 	import ButtonList from './page/testComponent/buttonList.svelte';
 	import ExplainSection from './page/testComponent/explain.svelte';
-	
+
 	const testArrayProps = [
 		"This is props that's given",
 		"This is props that's given",

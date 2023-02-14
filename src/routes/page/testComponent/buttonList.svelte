@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	export let arr = ['this is default props', 'this is default props', 'this is default props']; // props 기본값 설정
 </script>
 
