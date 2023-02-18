@@ -1,8 +1,17 @@
 <script lang="ts">
-	let test = 33;
+	import Component from "./component.svelte";
+
+	let number = 44;
 </script>
 
-<div class="wrapper">test</div>
+<div class="wrapper">
+	<Component bind:test={number} />
+	<button
+		on:click={() => {
+			number++;
+		}}>숫자 올리기 버튼</button
+	>
+</div>
 
 <style>
 	.wrapper {

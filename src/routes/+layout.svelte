@@ -4,9 +4,10 @@
 
 <nav class="wrapper">
 	<a href={INTERNAL_LINK.HOME}>home</a>
-
 	<a href={INTERNAL_LINK.BINDING}>Bindings page</a>
 	<a href={INTERNAL_LINK.COMPONENT_BINDING}>component binding</a>
+	<a href={INTERNAL_LINK.INPUT_BINDING}>input binding</a>
+	<a href={INTERNAL_LINK.LIFE_CYCLE}>life cycle</a>
 </nav>
 
 <div class="mainContainer">
