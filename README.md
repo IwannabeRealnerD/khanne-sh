@@ -1,5 +1,5 @@
 # khaminal
----
+
 
 This is a Svelte project that displays my resume as a terminal-style webpage.
 
@@ -22,9 +22,7 @@ npm run dev
 This will start a development server at http://localhost:3000. You can open this URL in your browser to see the app running.
 
 The app should look like a terminal window with a prompt. You can type commands into the prompt to navigate through my resume, like this:
-
-markdown
-Copy code
+``` bash
 > help
 Available commands:
   - experience  Show my work experience
@@ -51,14 +49,14 @@ Tools: Git, VS Code, ...
 Email: me@example.com
 Phone: 123-456-7890
 LinkedIn: https://www.linkedin.com/in/my-profile/
+
 Building the app
 
 To build the app for production, you can use the following command:
 
-bash
-Copy code
 npm run build
 This will build the app in the build directory, ready for deployment.
+```
 
 Contributing
 
