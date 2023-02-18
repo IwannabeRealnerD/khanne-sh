@@ -1,39 +1,69 @@
-# create-svelte
+# khaminal
+---
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+This is a Svelte project that displays my resume as a terminal-style webpage.
 
-## Creating a project
+Getting started
 
-If you're seeing this, you've probably already done this step. Congrats!
+To get started with the project, you can clone the repository and install the dependencies:
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+bash
+Copy code
+git clone https://github.com/your-username/my-resume-terminal.git
+cd my-resume-terminal
+npm install
+Running the app
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+To run the app in development mode, you can use the following command:
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
+bash
+Copy code
 npm run dev
+This will start a development server at http://localhost:3000. You can open this URL in your browser to see the app running.
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+The app should look like a terminal window with a prompt. You can type commands into the prompt to navigate through my resume, like this:
 
-## Building
+markdown
+Copy code
+> help
+Available commands:
+  - experience  Show my work experience
+  - education   Show my education
+  - skills      Show my skills
+  - contact     Show my contact information
 
-To create a production version of your app:
+> experience
+2018 - Present: Full-stack developer at Acme Corp
+  - Developed and maintained a large web application using Svelte and Node.js
+  - ...
 
-```bash
+> education
+2014 - 2018: Bachelor's degree in Computer Science from XYZ University
+  - Relevant coursework: ...
+  - ...
+
+> skills
+Languages: JavaScript, Python, ...
+Frameworks: Svelte, React, ...
+Tools: Git, VS Code, ...
+
+> contact
+Email: me@example.com
+Phone: 123-456-7890
+LinkedIn: https://www.linkedin.com/in/my-profile/
+Building the app
+
+To build the app for production, you can use the following command:
+
+bash
+Copy code
 npm run build
-```
+This will build the app in the build directory, ready for deployment.
 
-You can preview the production build with `npm run preview`.
+Contributing
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
-# svelte-playground
+If you would like to contribute to the project, you can fork the repository and create a pull request with your changes.
+
+License
+
+This project is licensed under the MIT license. See the LICENSE file for details.
