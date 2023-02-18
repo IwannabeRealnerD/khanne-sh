@@ -1,1 +1,5 @@
-export const INTERNAL_LINK = { home: '/', bindings: '/bindings' };
+export const INTERNAL_LINK = {
+	HOME: "/",
+	BINDING: "/binding",
+	COMPONENT_BINDING: "/component-binding"
+};
