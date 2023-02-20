@@ -7,15 +7,13 @@ export const getStorageArr = () => {
 	return commandArr;
 };
 
-export const putStorageArr = (command: string) => {
-	const commandString = localStorage.getItem(TERMINAL_HISTORY_KEY);
-	if (commandString === null) {
-		localStorage.setItem(TERMINAL_HISTORY_KEY, JSON.stringify([command]));
-		return;
-	}
-	const commandArr: string[] = JSON.parse(commandString);
-	commandArr.push(command);
-	localStorage.setItem(TERMINAL_HISTORY_KEY, JSON.stringify(commandArr));
+export const createStorageArr = (command: string) => {
+	localStorage.setItem(TERMINAL_HISTORY_KEY, JSON.stringify([command]));
+};
+
+export const putStorageArr = (command: string, prevCommandArr: string[]) => {
+	prevCommandArr.push(command);
+	localStorage.setItem(TERMINAL_HISTORY_KEY, JSON.stringify(prevCommandArr));
 };
 
 export const resetStorage = () => {

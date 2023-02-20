@@ -1,9 +1,22 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { getStorageArr, putStorageArr } from "$/lib/util";
+	import { createStorageArr, getStorageArr, putStorageArr } from "$/lib/util";
+	import { checkDuplicatedCommand } from "./util";
 
 	let resultArr: string[] = ["loading"];
 	let inputCommand: string;
+
+	const commandOnSubmit = () => {
+		const storageArr = getStorageArr();
+		if (!storageArr) {
+			createStorageArr(inputCommand);
+		}
+		if (checkDuplicatedCommand(inputCommand, storageArr)) {
+			return;
+		}
+		putStorageArr(inputCommand, storageArr);
+		resultArr = getStorageArr();
+	};
 
 	onMount(() => {
 		resultArr = getStorageArr();
@@ -19,13 +32,10 @@
 		{/if}
 	</div>
 
-	<form
-		on:submit|preventDefault={() => {
-			putStorageArr(inputCommand);
-			resultArr = getStorageArr();
-		}}
-	>
-		<input class="inputTag" name="command" bind:value={inputCommand} /><button type="submit">
+	<form on:submit|preventDefault={commandOnSubmit}>
+		<input class="inputTag" name="command" bind:value={inputCommand} /><button
+			type="submit"
+		>
 			입력버튼
 		</button>
 	</form>
