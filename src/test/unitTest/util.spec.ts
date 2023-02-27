@@ -30,7 +30,7 @@ describe("이전 명령어 3개와 같은지 확인 함수", () => {
 				"명령어",
 				"몰라"
 			])
-		).toBe(false);
+		).toBe(false);''
 		expect(
 			checkDuplicatedCommand("명령어", [
 				"명령어",
