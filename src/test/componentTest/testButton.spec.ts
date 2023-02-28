@@ -8,6 +8,7 @@ describe("testComponent", () => {
 		render(TestButton, { inputCommand: "testing" });
 
 		const button = screen.getByRole("button");
+		console.log(button.textContent);
 		expect(button.textContent).toEqual("testing");
 	});
 });
