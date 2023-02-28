@@ -1,6 +1,5 @@
 import { TERMINAL_HISTORY_KEY } from "$/constants/localStorageKey";
 
-let eitw="33"
 export const getStorageArr = () => {
 	const commandString = localStorage.getItem(TERMINAL_HISTORY_KEY);
 	if (commandString === null) return null;
