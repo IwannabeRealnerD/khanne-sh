@@ -17,7 +17,7 @@ export const putStorageArr = (command: string, prevCommandArr: string[]) => {
 	localStorage.setItem(TERMINAL_HISTORY_KEY, JSON.stringify(prevCommandArr));
 };
 
-export const resetStorage = (key: LocalStorageType) => {
+export const resetLocalStorage = (key: LocalStorageType) => {
 	localStorage.removeItem(key);
 };
 
@@ -27,7 +27,7 @@ export const getLocalStorageItem = <T extends LocalStorageType>(
 	try {
 		const serializedData = localStorage.getItem(key);
 		if (serializedData === null) {
-			resetStorage(key);
+			resetLocalStorage(key);
 			return undefined;
 		}
 		return JSON.parse(serializedData);
@@ -36,8 +36,10 @@ export const getLocalStorageItem = <T extends LocalStorageType>(
 	}
 };
 
-
-export const setToLocalStorage = (key: string, value: unknown) => {
+export const setToLocalStorage = <T extends LocalStorageType>(
+	key: T,
+	value: localStorageItemMap[T]
+) => {
 	const serializedData = JSON.stringify(value);
 	localStorage.setItem(key, serializedData);
 };
