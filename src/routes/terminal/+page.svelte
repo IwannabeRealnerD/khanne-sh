@@ -1,25 +1,26 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { createStorageArr, getStorageArr, putStorageArr } from "$/lib/util";
+	import { getLocalStorageItem, setLocalStorage } from "$/lib/util";
 	import { checkDuplicatedCommand } from "./util";
+	import type { CommandType } from "$/type";
 
-	let resultArr: string[] = ["loading"];
+	let resultArr: CommandType[] = [{ command: "", answer: "" }];
 	let inputCommand: string;
 
 	const commandOnSubmit = () => {
-		const storageArr = getStorageArr();
+		const storageArr = getLocalStorageItem("COMMAND");
 		if (!storageArr) {
-			createStorageArr(inputCommand);
+			setLocalStorage(inputCommand);
 		}
 		if (checkDuplicatedCommand(inputCommand, storageArr)) {
 			return;
 		}
 		putStorageArr(inputCommand, storageArr);
-		resultArr = getStorageArr();
+		resultArr = getLocalStorageItem("COMMAND");
 	};
 
 	onMount(() => {
-		resultArr = getStorageArr();
+		resultArr = getLocalStorageItem("COMMAND") as CommandType[];
 	});
 </script>
 

@@ -1,10 +1,17 @@
-interface CommandType {
-	command: string;
-	answer: string;
-}
-type TestType = string;
+import type { CommandType, CountType, TestType } from "$/type";
 
-export type localStorageItemMap = { COMMAND: CommandType[]; TEST: TestType };
+type LocalStorageCommonKeys = "COMMAND" | "TEST" | "COUNT";
 
-export type LocalStorageType = keyof localStorageItemMap;
-export type LocalStorageValueType =  localStorageItemMap;
+export type LocalStorageGetType = {
+	[K in LocalStorageCommonKeys]: K extends "COMMAND"
+		? CommandType[]
+		: K extends "TEST"
+		? TestType[]
+		: CountType;
+};
+
+export type LocalStorageSetType = {
+	COMMAND: CommandType;
+	TEST: TestType;
+	COUNT: CountType;
+};
