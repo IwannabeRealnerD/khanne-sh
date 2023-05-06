@@ -1,61 +1,66 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import { getLocalStorageItem, setLocalStorage } from "$/lib/util";
-	import { checkDuplicatedCommand } from "./util";
 	import type { CommandType } from "$/type";
+	import PageLayout from "$/lib/global/pageLayout.svelte";
 
-	let resultArr: CommandType[] = [{ command: "", answer: "" }];
+	import { checkDuplicatedCommand } from "./util";
+
+	let resultArr: CommandType[] | undefined = [{ command: "", answer: "" }];
 	let inputCommand: string;
 
 	const commandOnSubmit = () => {
-		const storageArr = getLocalStorageItem("COMMAND");
-		if (!storageArr) {
-			setLocalStorage(inputCommand);
-		}
-		if (checkDuplicatedCommand(inputCommand, storageArr)) {
-			return;
-		}
-		putStorageArr(inputCommand, storageArr);
-		resultArr = getLocalStorageItem("COMMAND");
+		// const storageArr = getLocalStorageItem("COMMAND");
+		// if (!storageArr) {
+		// 	setLocalStorage("COMMAND", inputCommand);
+		// }
+		// if (checkDuplicatedCommand(inputCommand, storageArr)) {
+		// 	return;
+		// }
+		// putStorageArr(inputCommand, storageArr);
+		// resultArr = getLocalStorageItem("COMMAND");
 	};
 
 	onMount(() => {
-		resultArr = getLocalStorageItem("COMMAND") as CommandType[];
+		const history = getLocalStorageItem("COMMAND");
+		resultArr = history;
 	});
 </script>
 
-<main class="container">
-	<div class="resultArrWrapper">
-		{#if resultArr === null}
-			<p>Welcome to khanminal</p>
-		{:else}
-			{#each resultArr as result}<article>{result}</article>{/each}
-		{/if}
-	</div>
+<PageLayout>
+	<main class="container">
+		<div class="resultArrWrapper">
+			{#if !resultArr}
+				<p>Welcome to khanminal</p>
+				<p>Ask what you want to know about him</p>
+			{:else}
+				{#each resultArr as result}<article>{result}</article>{/each}
+			{/if}
+		</div>
 
-	<form on:submit|preventDefault={commandOnSubmit}>
-		<input class="inputTag" name="command" bind:value={inputCommand} /><button
-			type="submit"
-		>
-			입력버튼
-		</button>
-	</form>
-</main>
+		<form on:submit|preventDefault={commandOnSubmit}>
+			<input class="inputTag" name="command" bind:value={inputCommand} /><button
+				type="submit"
+			>
+				입력버튼
+			</button>
+		</form>
+	</main>
+</PageLayout>
 
 <style>
 	.container {
 		height: 100vh;
-		background-color: pink;
+		width: 100%;
 		display: flex;
 		flex-direction: column;
+		background-color: aliceblue;
 	}
 	.resultArrWrapper {
 		height: 90%;
-		background-color: blueviolet;
 	}
 	.inputTag {
 		width: 100%;
 		height: 3rem;
-		border-color: black;
 	}
 </style>
