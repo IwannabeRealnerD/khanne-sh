@@ -11,7 +11,7 @@ export type LocalStorageGetType = {
 };
 
 export type LocalStorageSetType = {
-	COMMAND: CommandType;
+	COMMAND: CommandType[];
 	TEST: TestType;
 	COUNT: CountType;
 };

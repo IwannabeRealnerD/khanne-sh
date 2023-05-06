@@ -1,24 +1,25 @@
 <script lang="ts">
 	import { onMount } from "svelte";
-	import { getLocalStorageItem, setLocalStorage } from "$/lib/util";
 	import type { CommandType } from "$/type";
+	import { getLocalStorageItem, setLocalStorageItem } from "$/lib/util";
+	import { TERMINAL_HISTORY_KEY } from "$/constants";
+
 	import PageLayout from "$/lib/global/pageLayout.svelte";
 
-	import { checkDuplicatedCommand } from "./util";
+	import {
+		checkDuplicatedCommand,
+		outputCreator,
+		putLocalStorageArr
+	} from "./util";
 
-	let resultArr: CommandType[] | undefined = [{ command: "", answer: "" }];
+	let resultArr: CommandType[] | undefined | null = null;
 	let inputCommand: string;
 
 	const commandOnSubmit = () => {
-		// const storageArr = getLocalStorageItem("COMMAND");
-		// if (!storageArr) {
-		// 	setLocalStorage("COMMAND", inputCommand);
-		// }
-		// if (checkDuplicatedCommand(inputCommand, storageArr)) {
-		// 	return;
-		// }
-		// putStorageArr(inputCommand, storageArr);
-		// resultArr = getLocalStorageItem("COMMAND");
+		if (inputCommand === "") return;
+		putLocalStorageArr(inputCommand);
+		resultArr?.push(inputCommand);
+		inputCommand = "";
 	};
 
 	onMount(() => {
@@ -30,20 +31,30 @@
 <PageLayout>
 	<main class="container">
 		<div class="resultArrWrapper">
-			{#if !resultArr}
-				<p>Welcome to khanminal</p>
-				<p>Ask what you want to know about him</p>
-			{:else}
-				{#each resultArr as result}<article>{result}</article>{/each}
+			{#if resultArr === null}
+				<div>
+					<p>loading</p>
+				</div>
+			{/if}
+			{#if resultArr === undefined}
+				<div>
+					<p>Welcome to khanminal</p>
+					<p>Ask what you want to know about him</p>
+				</div>
+			{/if}
+			{#if resultArr}
+				{#each resultArr as result}
+					<article>
+						<p>{result}</p>
+						<p>{outputCreator(result)}</p>
+					</article>
+				{/each}
 			{/if}
 		</div>
 
 		<form on:submit|preventDefault={commandOnSubmit}>
-			<input class="inputTag" name="command" bind:value={inputCommand} /><button
-				type="submit"
-			>
-				입력버튼
-			</button>
+			<input class="inputTag" name="command" bind:value={inputCommand} />
+			<button type="submit">입력버튼</button>
 		</form>
 	</main>
 </PageLayout>
@@ -55,6 +66,7 @@
 		display: flex;
 		flex-direction: column;
 		background-color: aliceblue;
+		padding: 1rem;
 	}
 	.resultArrWrapper {
 		height: 90%;
