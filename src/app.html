@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<script lang="ts">
-	import sefef from "$/lib/common/global/header.svelte";
-</script>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
 		<meta name="viewport" content="width=device-width" />
 		%sveltekit.head%
+		<title>khanne-sh</title>
+		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
@@ -19,9 +23,17 @@
 	}
 	html {
 		min-width: 375px;
-		font-size: 18px;
+		font-family: "VT323", monospace;
+		font-size: 20px;
 		@media (max-width: 768px) {
-			font-size: 16px;
+			font-size: 18px;
+		}
+	}
+	input {
+		font-family: "VT323", monospace;
+		font-size: 20px;
+		@media (max-width: 768px) {
+			font-size: 18px;
 		}
 	}
 	body,

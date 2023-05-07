@@ -1,78 +1,120 @@
 <script lang="ts">
-	import { onMount } from "svelte";
+	import { onMount, tick } from "svelte";
 	import type { CommandType } from "$/type";
 	import { getLocalStorageItem, setLocalStorageItem } from "$/lib/util";
-	import { TERMINAL_HISTORY_KEY } from "$/constants";
 
 	import PageLayout from "$/lib/global/pageLayout.svelte";
 
-	import {
-		checkDuplicatedCommand,
-		outputCreator,
-		putLocalStorageArr
-	} from "./util";
+	import { outputCreator, putLocalStorageArr } from "./util";
+	import { COMMAND_OBJ } from "./constant";
 
-	let resultArr: CommandType[] | undefined | null = null;
+	let comandArr: CommandType[] | undefined = [];
 	let inputCommand: string;
+	let isValidCommand = (userInputCommand: string) => {
+		for (const value of Object.values(COMMAND_OBJ)) {
+			if (value === userInputCommand) {
+				return "validInputCommand";
+			}
+		}
+		return "invalidInputCommand";
+	};
 
-	const commandOnSubmit = () => {
-		if (inputCommand === "") return;
+	const commandOnSubmit = async () => {
+		if (comandArr === null) return;
 		putLocalStorageArr(inputCommand);
-		resultArr?.push(inputCommand);
+		if (!comandArr) {
+			comandArr = [inputCommand];
+			window.scrollTo(0, document.body.scrollHeight);
+			setTimeout(() => {
+				scroll(0, document.body.scrollHeight);
+			}, 50);
+			await tick();
+			scroll(0, document.body.scrollHeight);
+			return;
+		}
+		comandArr = [...comandArr, inputCommand];
 		inputCommand = "";
+		// scroll(0, document.body.scrollHeight);
+		await tick();
+		window.scrollTo(100, document.body.scrollHeight);
+		// setTimeout(() => {
+		// 	scroll(0, document.body.scrollHeight);
+		// }, 1);
 	};
 
 	onMount(() => {
 		const history = getLocalStorageItem("COMMAND");
-		resultArr = history;
+		comandArr = history;
 	});
 </script>
 
 <PageLayout>
 	<main class="container">
-		<div class="resultArrWrapper">
-			{#if resultArr === null}
+		<div class="commandArrWrapper">
+			{#if comandArr === undefined}
 				<div>
-					<p>loading</p>
-				</div>
-			{/if}
-			{#if resultArr === undefined}
-				<div>
-					<p>Welcome to khanminal</p>
+					<p>Welcome to khanne-sh</p>
 					<p>Ask what you want to know about him</p>
 				</div>
 			{/if}
-			{#if resultArr}
-				{#each resultArr as result}
-					<article>
-						<p>{result}</p>
-						<p>{outputCreator(result)}</p>
+			{#if comandArr}
+				{#each comandArr as command}
+					<article class="commandWrapper">
+						<p class="userInputCommand">khanne-sh :</p>
+						{command}
+						<p class="commandOutput">{outputCreator(command)}</p>
 					</article>
 				{/each}
 			{/if}
+			<form on:submit|preventDefault={commandOnSubmit} autocomplete="off">
+				<input
+					class={`inputTag ${isValidCommand(inputCommand)}`}
+					name="command"
+					bind:value={inputCommand}
+					autofocus
+				/>
+			</form>
 		</div>
-
-		<form on:submit|preventDefault={commandOnSubmit}>
-			<input class="inputTag" name="command" bind:value={inputCommand} />
-			<button type="submit">입력버튼</button>
-		</form>
 	</main>
 </PageLayout>
 
 <style>
 	.container {
-		height: 100vh;
 		width: 100%;
 		display: flex;
 		flex-direction: column;
-		background-color: aliceblue;
+		background-color: #282935;
 		padding: 1rem;
 	}
-	.resultArrWrapper {
-		height: 90%;
+	.commandArrWrapper {
+		overflow: scroll;
+	}
+	.commandWrapper {
+		border-bottom: dashed 1.5px #686767;
+		padding: 0.5rem 0;
+	}
+	.userInputCommand {
+		color: #57c6fe;
+	}
+	.commandOutput {
+		white-space: pre-wrap;
+		color: #f1f0ef;
 	}
 	.inputTag {
 		width: 100%;
 		height: 3rem;
+		border: none;
+		background-color: transparent;
+		caret-color: white;
+		padding: 0;
+	}
+	.inputTag:focus {
+		outline: none;
+	}
+	.validInputCommand {
+		color: #5af68d;
+	}
+	.invalidInputCommand {
+		color: #fe5b56;
 	}
 </style>
