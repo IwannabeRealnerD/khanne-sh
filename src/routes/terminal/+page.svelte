@@ -1,15 +1,15 @@
 <script lang="ts">
 	import { onMount, tick } from "svelte";
 	import type { CommandType } from "$/type";
-	import { getLocalStorageItem, setLocalStorageItem } from "$/lib/util";
+	import { getLocalStorageItem } from "$/lib/util";
 
-	import PageLayout from "$/lib/global/pageLayout.svelte";
 
 	import { outputCreator, putLocalStorageArr } from "./util";
 	import { COMMAND_OBJ } from "./constant";
 
 	let comandArr: CommandType[] | undefined = [];
 	let inputCommand: string;
+	let scrollBind: HTMLElement;
 	let isValidCommand = (userInputCommand: string) => {
 		for (const value of Object.values(COMMAND_OBJ)) {
 			if (value === userInputCommand) {
@@ -34,53 +34,53 @@
 		}
 		comandArr = [...comandArr, inputCommand];
 		inputCommand = "";
-		// scroll(0, document.body.scrollHeight);
 		await tick();
-		window.scrollTo(100, document.body.scrollHeight);
-		// setTimeout(() => {
-		// 	scroll(0, document.body.scrollHeight);
-		// }, 1);
+		console.log(scrollBind.scrollHeight);
+		scrollBind.scrollTop = scrollBind.scrollHeight;
 	};
 
-	onMount(() => {
+	onMount(async () => {
 		const history = getLocalStorageItem("COMMAND");
 		comandArr = history;
+		await tick();
+
+		console.log(scrollBind.scrollHeight);
+		scrollBind.scrollTop = scrollBind.scrollHeight;
 	});
 </script>
 
-<PageLayout>
-	<main class="container">
-		<div class="commandArrWrapper">
-			{#if comandArr === undefined}
-				<div>
-					<p>Welcome to khanne-sh</p>
-					<p>Ask what you want to know about him</p>
-				</div>
-			{/if}
-			{#if comandArr}
-				{#each comandArr as command}
-					<article class="commandWrapper">
-						<p class="userInputCommand">khanne-sh :</p>
-						{command}
-						<p class="commandOutput">{outputCreator(command)}</p>
-					</article>
-				{/each}
-			{/if}
-			<form on:submit|preventDefault={commandOnSubmit} autocomplete="off">
-				<input
-					class={`inputTag ${isValidCommand(inputCommand)}`}
-					name="command"
-					bind:value={inputCommand}
-					autofocus
-				/>
-			</form>
-		</div>
-	</main>
-</PageLayout>
+<main class="container">
+	<div class="commandArrWrapper" bind:this={scrollBind}>
+		{#if comandArr === undefined}
+			<div>
+				<p>Welcome to khanne-sh</p>
+				<p>Ask what you want to know about him</p>
+			</div>
+		{/if}
+		{#if comandArr}
+			{#each comandArr as command}
+				<article class="commandWrapper">
+					<p class="userInputCommand">khanne-sh :</p>
+					{command}
+					<p class="commandOutput">{outputCreator(command)}</p>
+				</article>
+			{/each}
+		{/if}
+		<form on:submit|preventDefault={commandOnSubmit} autocomplete="off">
+			<input
+				class={`inputTag ${isValidCommand(inputCommand)}`}
+				name="command"
+				bind:value={inputCommand}
+				autofocus
+			/>
+		</form>
+	</div>
+</main>
 
 <style>
 	.container {
 		width: 100%;
+		height: 100vh;
 		display: flex;
 		flex-direction: column;
 		background-color: #282935;
