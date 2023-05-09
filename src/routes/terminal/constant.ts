@@ -1,7 +1,6 @@
 export const COMMAND_OBJ = {
 	HELP: "help",
 	ABOUT: "about",
-	GITHUB: "github"
+	GITHUB: "github",
+	PWD: "pwd"
 };
-
-type CommandObjType = keyof typeof COMMAND_OBJ;

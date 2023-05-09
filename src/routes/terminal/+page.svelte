@@ -3,14 +3,13 @@
 	import type { CommandType } from "$/type";
 	import { getLocalStorageItem } from "$/lib/util";
 
-
 	import { outputCreator, putLocalStorageArr } from "./util";
 	import { COMMAND_OBJ } from "./constant";
 
 	let comandArr: CommandType[] | undefined = [];
 	let inputCommand: string;
 	let scrollBind: HTMLElement;
-	let isValidCommand = (userInputCommand: string) => {
+	let isValidCommand = (userInputCommand?: string) => {
 		for (const value of Object.values(COMMAND_OBJ)) {
 			if (value === userInputCommand) {
 				return "validInputCommand";
@@ -21,21 +20,29 @@
 
 	const commandOnSubmit = async () => {
 		if (comandArr === null) return;
-		putLocalStorageArr(inputCommand);
+		putLocalStorageArr({
+			command: inputCommand,
+			result: outputCreator(inputCommand)
+		});
 		if (!comandArr) {
-			comandArr = [inputCommand];
+			comandArr = [
+				{
+					command: inputCommand,
+					result: outputCreator(inputCommand)
+				}
+			];
 			window.scrollTo(0, document.body.scrollHeight);
-			setTimeout(() => {
-				scroll(0, document.body.scrollHeight);
-			}, 50);
+			inputCommand = "";
 			await tick();
 			scroll(0, document.body.scrollHeight);
 			return;
 		}
-		comandArr = [...comandArr, inputCommand];
+		comandArr = [
+			...comandArr,
+			{ command: inputCommand, result: outputCreator(inputCommand) }
+		];
 		inputCommand = "";
 		await tick();
-		console.log(scrollBind.scrollHeight);
 		scrollBind.scrollTop = scrollBind.scrollHeight;
 	};
 
@@ -43,8 +50,6 @@
 		const history = getLocalStorageItem("COMMAND");
 		comandArr = history;
 		await tick();
-
-		console.log(scrollBind.scrollHeight);
 		scrollBind.scrollTop = scrollBind.scrollHeight;
 	});
 </script>
@@ -60,13 +65,22 @@
 		{#if comandArr}
 			{#each comandArr as command}
 				<article class="commandWrapper">
-					<p class="userInputCommand">khanne-sh :</p>
-					{command}
-					<p class="commandOutput">{outputCreator(command)}</p>
+					<div class="commandContainer">
+						<p class="userInputCommand">khanne-sh :</p>
+						<p class={`inputTag ${isValidCommand(command.command)}`}>
+							{command.command}
+						</p>
+					</div>
+					<p class="commandOutput">{command.result}</p>
 				</article>
 			{/each}
 		{/if}
-		<form on:submit|preventDefault={commandOnSubmit} autocomplete="off">
+		<form
+			on:submit|preventDefault={commandOnSubmit}
+			autocomplete="off"
+			class="formContainer"
+		>
+			<p class="userInputCommand">khanne-sh :</p>
 			<input
 				class={`inputTag ${isValidCommand(inputCommand)}`}
 				name="command"
@@ -93,8 +107,17 @@
 		border-bottom: dashed 1.5px #686767;
 		padding: 0.5rem 0;
 	}
+	.commandContainer {
+		display: flex;
+	}
+
+	.formContainer {
+		display: flex;
+		padding: 0.5rem 0;
+	}
 	.userInputCommand {
 		color: #57c6fe;
+		width: 6rem;
 	}
 	.commandOutput {
 		white-space: pre-wrap;
@@ -102,7 +125,6 @@
 	}
 	.inputTag {
 		width: 100%;
-		height: 3rem;
 		border: none;
 		background-color: transparent;
 		caret-color: white;
