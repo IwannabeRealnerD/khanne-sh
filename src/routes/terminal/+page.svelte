@@ -1,44 +1,40 @@
 <script lang="ts">
 	import { onMount, tick } from "svelte";
 	import type { CommandType } from "$/type";
+	import { TERMINAL_HISTORY_KEY } from "$/constants";
 	import { getLocalStorageItem } from "$/lib/util";
 
-	import { outputCreator, putLocalStorageArr } from "./util";
-	import { COMMAND_OBJ } from "./constant";
+	import {
+		historyLengthCutter,
+		isValidCommand,
+		outputCreator,
+		putLocalStorageArr
+	} from "./util";
 
-	let comandArr: CommandType[] | undefined = [];
+	let commandArr: CommandType[] | undefined = [];
 	let inputCommand: string;
 	let scrollBind: HTMLElement;
-	let isValidCommand = (userInputCommand?: string) => {
-		for (const value of Object.values(COMMAND_OBJ)) {
-			if (value === userInputCommand) {
-				return "validInputCommand";
-			}
-		}
-		return "invalidInputCommand";
-	};
 
 	const commandOnSubmit = async () => {
-		if (comandArr === null) return;
+		if (commandArr === null) return;
 		putLocalStorageArr({
-			command: inputCommand,
+			command: inputCommand ?? "",
 			result: outputCreator(inputCommand)
 		});
-		if (!comandArr) {
-			comandArr = [
+		if (!commandArr) {
+			commandArr = [
 				{
 					command: inputCommand,
 					result: outputCreator(inputCommand)
 				}
 			];
-			window.scrollTo(0, document.body.scrollHeight);
 			inputCommand = "";
 			await tick();
 			scroll(0, document.body.scrollHeight);
 			return;
 		}
-		comandArr = [
-			...comandArr,
+		commandArr = [
+			...commandArr,
 			{ command: inputCommand, result: outputCreator(inputCommand) }
 		];
 		inputCommand = "";
@@ -47,8 +43,11 @@
 	};
 
 	onMount(async () => {
-		const history = getLocalStorageItem("COMMAND");
-		comandArr = history;
+		let history = getLocalStorageItem(TERMINAL_HISTORY_KEY);
+		if (history && history.length > 100) {
+			history = historyLengthCutter(history);
+		}
+		commandArr = history;
 		await tick();
 		scrollBind.scrollTop = scrollBind.scrollHeight;
 	});
@@ -56,14 +55,14 @@
 
 <main class="container">
 	<div class="commandArrWrapper" bind:this={scrollBind}>
-		{#if comandArr === undefined}
+		{#if commandArr === undefined || commandArr.length === 0}
 			<div>
 				<p>Welcome to khanne-sh</p>
 				<p>Ask what you want to know about him</p>
 			</div>
 		{/if}
-		{#if comandArr}
-			{#each comandArr as command}
+		{#if commandArr}
+			{#each commandArr as command}
 				<article class="commandWrapper">
 					<div class="commandContainer">
 						<p class="userInputCommand">khanne-sh :</p>

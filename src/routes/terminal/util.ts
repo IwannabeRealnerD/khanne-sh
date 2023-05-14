@@ -4,6 +4,23 @@ import { getLocalStorageItem, setLocalStorageItem } from "$/lib/util";
 
 import { COMMAND_OBJ } from "./constant";
 
+export const isValidCommand = (userInputCommand?: string) => {
+	for (const value of Object.values(COMMAND_OBJ)) {
+		if (value === userInputCommand) {
+			return "validInputCommand";
+		}
+	}
+	return "invalidInputCommand";
+};
+
+export const historyLengthCutter = (commandArr: CommandType[]) => {
+	let array = [];
+	array = commandArr.slice(-10, 0);
+	console.log("마지막 element", commandArr.slice(-10, -1));
+	console.log(commandArr, array);
+	return array;
+};
+
 export const checkDuplicatedCommand = (
 	command: string,
 	resultArr: string[]
@@ -27,6 +44,10 @@ export const outputCreator = (inputCommand: string) => {
 	if (inputCommand === COMMAND_OBJ.PWD) {
 		return window.location.href;
 	}
+	if (inputCommand === COMMAND_OBJ.CLEAR) {
+		claerStorageArr();
+		return "khanne-sh history is cleared.";
+	}
 	return `khanne-sh: command not found: ${inputCommand}`;
 };
 
@@ -36,7 +57,16 @@ export const putLocalStorageArr = (commandObj: CommandType) => {
 		setLocalStorageItem(TERMINAL_HISTORY_KEY, [commandObj]);
 		return;
 	}
+	if (prevCommandArr.length > 10) {
+		const shortCommandArr = historyLengthCutter(prevCommandArr);
+		shortCommandArr.push(commandObj);
+		setLocalStorageItem(TERMINAL_HISTORY_KEY, shortCommandArr);
+		return;
+	}
 	prevCommandArr.push(commandObj);
 	setLocalStorageItem(TERMINAL_HISTORY_KEY, prevCommandArr);
-	localStorage.setItem(TERMINAL_HISTORY_KEY, JSON.stringify(prevCommandArr));
+};
+
+export const claerStorageArr = () => {
+	setLocalStorageItem(TERMINAL_HISTORY_KEY, []);
 };

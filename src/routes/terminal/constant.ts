@@ -2,5 +2,6 @@ export const COMMAND_OBJ = {
 	HELP: "help",
 	ABOUT: "about",
 	GITHUB: "github",
-	PWD: "pwd"
+	PWD: "pwd",
+	CLEAR: "clear"
 };

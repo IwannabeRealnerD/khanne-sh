@@ -1,5 +1,19 @@
 import { describe, expect, it } from "vitest";
 import { checkDuplicatedCommand } from "$/routes/terminal/util";
+import { historyLengthCutter } from "$/routes/terminal/util";
+
+// describe("명령어 객체 배열이 100개가 넘을 경우 index 0-90 함수만 남겨놓는 함수", () => {
+// 	it("명령어 객체 배열이 101개일 경우 90개로 줄임", () => {
+// 		const commandArr = new Array(101);
+// 		const result = historyLengthCutter(commandArr);
+// 		expect(result?.length).toBe(90);
+// 	});
+// 	it("명령어 객체 배열이 80개일 경우 여전히 90개로 반환", () => {
+// 		const commandArr = new Array(101);
+// 		const result = historyLengthCutter(commandArr);
+// 		expect(result?.length).toBe(90);
+// 	});
+// });
 
 describe("이전 명령어 3개와 같은지 확인 함수", () => {
 	it("length가 1-2이며 중복되지 않은 배열이 입력될 경우", () => {
