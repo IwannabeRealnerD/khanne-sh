@@ -16,7 +16,6 @@
 	let scrollBind: HTMLElement;
 
 	const commandOnSubmit = async () => {
-		if (commandArr === null) return;
 		putLocalStorageArr({
 			command: inputCommand ?? "",
 			result: outputCreator(inputCommand)
@@ -33,8 +32,9 @@
 			scroll(0, document.body.scrollHeight);
 			return;
 		}
+		const cutArr = historyLengthCutter(commandArr);
 		commandArr = [
-			...commandArr,
+			...cutArr,
 			{ command: inputCommand, result: outputCreator(inputCommand) }
 		];
 		inputCommand = "";
@@ -44,7 +44,7 @@
 
 	onMount(async () => {
 		let history = getLocalStorageItem(TERMINAL_HISTORY_KEY);
-		if (history && history.length > 100) {
+		if (history && history.length > 50) {
 			history = historyLengthCutter(history);
 		}
 		commandArr = history;

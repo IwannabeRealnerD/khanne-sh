@@ -13,12 +13,8 @@ export const isValidCommand = (userInputCommand?: string) => {
 	return "invalidInputCommand";
 };
 
-export const historyLengthCutter = (commandArr: CommandType[]) => {
-	let array = [];
-	array = commandArr.slice(-10, 0);
-	console.log("마지막 element", commandArr.slice(-10, -1));
-	console.log(commandArr, array);
-	return array;
+export const historyLengthCutter = <T>(commandArr: T[]): T[] => {
+	return commandArr.slice(-40);
 };
 
 export const checkDuplicatedCommand = (
@@ -57,7 +53,7 @@ export const putLocalStorageArr = (commandObj: CommandType) => {
 		setLocalStorageItem(TERMINAL_HISTORY_KEY, [commandObj]);
 		return;
 	}
-	if (prevCommandArr.length > 10) {
+	if (prevCommandArr.length > 50) {
 		const shortCommandArr = historyLengthCutter(prevCommandArr);
 		shortCommandArr.push(commandObj);
 		setLocalStorageItem(TERMINAL_HISTORY_KEY, shortCommandArr);
