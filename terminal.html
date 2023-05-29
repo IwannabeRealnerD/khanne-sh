@@ -3,18 +3,17 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
-		<meta http-equiv="content-security-policy" content="">
-		<link href="/khanne-sh/_app/immutable/assets/_page-9627a858.css" rel="stylesheet">
-		<link rel="modulepreload" href="/khanne-sh/_app/immutable/start-df101437.js">
-		<link rel="modulepreload" href="/khanne-sh/_app/immutable/chunks/index-49a526af.js">
-		<link rel="modulepreload" href="/khanne-sh/_app/immutable/chunks/singletons-76dd903b.js">
-		<link rel="modulepreload" href="/khanne-sh/_app/immutable/chunks/paths-1f1a8525.js">
-		<link rel="modulepreload" href="/khanne-sh/_app/immutable/components/layout.svelte-4be3f0c4.js">
-		<link rel="modulepreload" href="/khanne-sh/_app/immutable/modules/pages/_layout.ts-9cbb603b.js">
-		<link rel="modulepreload" href="/khanne-sh/_app/immutable/chunks/_layout-da46b06b.js">
-		<link rel="modulepreload" href="/khanne-sh/_app/immutable/components/pages/terminal/_page.svelte-e3d6825f.js">
+		
+		<link href="./_app/immutable/assets/3.9627a858.css" rel="stylesheet">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.f1674b23.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/index.24eee831.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.51be1438.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/paths.c2ce0f9e.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.f075473a.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/0.d5960fa7.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/3.bc257e46.js">
 		<title>khanne-sh</title>
-		<link rel="icon" href="/khanne-sh/favicon.png" />
+		<link rel="icon" href="./favicon.png" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
@@ -34,23 +33,33 @@
 </main>
 
 
-		<script type="module" data-sveltekit-hydrate="159xjm6">
-			import { start } from "/khanne-sh/_app/immutable/start-df101437.js";
+			
+			<script>
+				{
+					__sveltekit_4h4w34 = {
+						assets: "/khanne-sh",
+						base: new URL(".", location).pathname.slice(0, -1),
+						env: {}
+					};
 
-			start({
-				assets: "/khanne-sh",
-				env: {},
-				target: document.querySelector('[data-sveltekit-hydrate="159xjm6"]').parentNode,
-				version: "1685326595052",
-				hydrate: {
-					node_ids: [0, 3],
-					data: [null,null],
-					form: null,
-					error: null
+					const element = document.currentScript.parentElement;
+
+					const data = [null,null];
+
+					Promise.all([
+						import("./_app/immutable/entry/start.f1674b23.js"),
+						import("./_app/immutable/entry/app.f075473a.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 3],
+							data,
+							form: null,
+							error: null
+						});
+					});
 				}
-			});
-		</script>
-	</div>
+			</script>
+		</div>
 	</body>
 </html>
 <style>
