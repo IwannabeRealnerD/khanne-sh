@@ -12,7 +12,7 @@
 		"format": "prettier --plugin-search-dir . --write .",
 		"test": "vitest --run",
 		"prepare": "husky install",
-		"deploy": "pnpm build && pnpx gh-pages -d build -t true"
+		"gh-pages": "pnpm build && pnpx gh-pages -d build -t true"
 	},
 	"lint-staged": {
 		"src/**/*.{svelte,ts}": [

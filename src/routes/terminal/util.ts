@@ -31,11 +31,15 @@ export const outputCreator = (inputCommand: string) => {
 		return "khanne-sh is a terminal that has information about khanne(me). \n You can use 'help' command to see available commands.";
 	}
 	if (inputCommand === COMMAND_OBJ.HELP) {
-		return "Here are commands that you can use: \n 1. about \n 2. github \n 3. help";
+		return "Here are commands that you can use: \n 1. about : to get information about this project. \n 2. github : open new tab for khanne's github \n 3. help : to see available commands \n 4. pwd : to see current url \n 5. clear : to clear history";
 	}
 	if (inputCommand === COMMAND_OBJ.GITHUB) {
 		window.open("https://github.com/IwannabeRealnerD");
-		return "Redirecting to github repositories...";
+		return "Redirecting to khanne's github repositories...";
+	}
+	if (inputCommand === COMMAND_OBJ.BLOG) {
+		window.open("https://iwannaberealnerd.oopy.io/develog");
+		return "Opening new tabs for khanne's blog...";
 	}
 	if (inputCommand === COMMAND_OBJ.PWD) {
 		return window.location.href;
