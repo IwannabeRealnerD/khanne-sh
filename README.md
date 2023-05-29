@@ -1,67 +1,76 @@
-# khanne-sh
+<div align="center">
+  <a href="https://github.com/othneildrew/Best-README-Template">
+    <img src="images/original_favicon.png" alt="Logo" width="80" height="80">
+  </a>
 
+  <h2 align="center">khanne-sh</h2>
 
-This is a Svelte project that displays my resume as a terminal-style webpage.
+  <p align="center">
+    시시하지 않은 이력서, khanne을 더 알아 갈수 있는 <s>zsh 아.. 아니</s> khanne-sh(칸쉘)
+    <br />
+    <br />
+    <br />
+    <a href="https://iwannaberealnerd.github.io/khanne-sh/">배포 링크</a>
+    ·
+    <a href="https://github.com/IwannabeRealnerD/khanne-sh/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/IwannabeRealnerD/khanne-sh/issues">Request Feature</a>
+  </p>
+</div>
 
-Getting started
+- 해당 프로젝트는 svelte kit을 이용하여 개발된 터미널 UI를 가진 이력서 입니다.
 
-To get started with the project, you can clone the repository and install the dependencies:
+## 사용 기술
+  <img src="https://img.shields.io/badge/svelte-FF3200?style=for-the-badge&logo=svelte&logoColor=white">
+  <img src="https://img.shields.io/badge/vite-646CFF?style=for-the-badge&logo=vite&logoColor=white">
+  <img src="https://img.shields.io/badge/vitest-6E9F18?style=for-the-badge&logo=vitest&logoColor=white">
 
-bash
-Copy code
-git clone https://github.com/your-username/my-resume-terminal.git
-cd my-resume-terminal
-npm install
-Running the app
+## 배포 환경
+- github pages를 이용하여 배포 [배포 링크](https://iwannaberealnerd.github.io/khanne-sh/)
 
-To run the app in development mode, you can use the following command:
-
-bash
-Copy code
-npm run dev
-This will start a development server at http://localhost:3000. You can open this URL in your browser to see the app running.
-
-The app should look like a terminal window with a prompt. You can type commands into the prompt to navigate through my resume, like this:
-``` bash
-> help
-Available commands:
-  - experience  Show my work experience
-  - education   Show my education
-  - skills      Show my skills
-  - contact     Show my contact information
-
-> experience
-2018 - Present: Full-stack developer at Acme Corp
-  - Developed and maintained a large web application using Svelte and Node.js
-  - ...
-
-> education
-2014 - 2018: Bachelor degree in Computer Science from XYZ University
-  - Relevant coursework: ...
-  - ...
-
-> skills
-Languages: JavaScript, Python, ...
-Frameworks: Svelte, React, ...
-Tools: Git, VS Code, ...
-
-> contact
-Email: me@example.com
-Phone: 123-456-7890
-LinkedIn: https://www.linkedin.com/in/my-profile/
-
-Building the app
-
-To build the app for production, you can use the following command:
-
-npm run build
-This will build the app in the build directory, ready for deployment.
+## 사용방법
+### 대응 커맨드
+```sh
+ help # khanne-sh 사용법 확인
+ about # khanne-sh 프로젝트에 대한 설명
+ github # khanne의 깃헙 페이지로 이동
+ blog # khanne의 블로그로 이동
+ pwd # 현재 접근 URL 확인
+ clear # 입력된 command history 삭제
 ```
+- 추가 명령어는 업데이트 예정
 
-Contributing
+## 로컬 환경에서 시작하기
+- 다음은 로컬에서 프로젝트를 설정하는 방법에 대한 설명입니다. 로컬 사본을 설정하고 실행하려면 다음의 간단한 예제 단계를 따르세요.
+- 해당 프로젝트 시작을 위해서는 reapository를 clone 하고 dependency를 설치해야 합니다.
 
-If you would like to contribute to the project, you can fork the repository and create a pull request with your changes.
+### 환경 설정
+- nodejs - 18.16.0
+- pnpm - 8.6.0
+  ```sh
+  corepack prepare pnpm@8.6.0 --activate
+  ```
 
-License
+### 실행방법
+1. 레포지터리 clone
+   ```sh
+   git clone https://github.com/IwannabeRealnerD/khanne-sh.git
+   ```
+3. pnpm dependency 설치
+   ```sh
+   pnpm install --frozen-lockfile
+   ```
+4. 프로젝트 실행
+   ```sh
+   pnpm dev
+   ```
 
-This project is licensed under the MIT license. See the LICENSE file for details.
+## 기능 추가 로드맵
+
+- [ ] Add Changelog 추가
+- [ ] e2e 테스트 (playwright) 추가
+- [ ] 영어 README 작성
+
+
+## Contact
+khanne - iwannaberealnerd@gmail.com
