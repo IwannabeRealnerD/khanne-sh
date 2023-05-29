@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { checkDuplicatedCommand } from "$/routes/terminal/util";
-import { historyLengthCutter } from "$/routes/terminal/util";
+import { checkDuplicatedCommand } from "$/routes/util";
+import { historyLengthCutter } from "$/routes/util";
 
 describe("명령어 객체 배열이 100개가 넘을 경우 index 0-90 함수만 남겨놓는 함수", () => {
 	it("50개 이상 입력 됐을때 배열의 최신 요소 10개만 반환 확인", () => {
