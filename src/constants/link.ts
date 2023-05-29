@@ -1,4 +1,6 @@
+import { base } from "$app/paths";
+
 export const INTERNAL_LINK = {
-	MAIN: "/",
-	TERMINAL: "/terminal"
+	MAIN: `${base}/`,
+	TERMINAL: `${base}/terminal`
 };

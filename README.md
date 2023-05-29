@@ -1,4 +1,4 @@
-# khaminal
+# khanne-sh
 
 
 This is a Svelte project that displays my resume as a terminal-style webpage.

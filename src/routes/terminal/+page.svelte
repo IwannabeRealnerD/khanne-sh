@@ -56,10 +56,10 @@
 <main class="container">
 	<div class="commandArrWrapper" bind:this={scrollBind}>
 		{#if commandArr === undefined || commandArr.length === 0}
-			<div>
-				<p>Welcome to khanne-sh</p>
-				<p>Ask what you want to know about him</p>
-			</div>
+			<article class="commandWrapper">
+				<p class="welcomeMessage">Welcome to khanne-sh</p>
+				<p class="welcomeMessage">Ask what you want to know about him</p>
+			</article>
 		{/if}
 		{#if commandArr}
 			{#each commandArr as command}
@@ -101,6 +101,9 @@
 	}
 	.commandArrWrapper {
 		overflow: scroll;
+	}
+	.welcomeMessage {
+		color: #57c6fe;
 	}
 	.commandWrapper {
 		border-bottom: dashed 1.5px #686767;
