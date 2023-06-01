@@ -7,10 +7,10 @@ import { COMMAND_OBJ } from "./constant";
 export const isValidCommand = (userInputCommand?: string) => {
 	for (const value of Object.values(COMMAND_OBJ)) {
 		if (value === userInputCommand) {
-			return "validInputCommand";
+			return "validInput";
 		}
 	}
-	return "invalidInputCommand";
+	return "invalidInput";
 };
 
 export const historyLengthCutter = <T>(commandArr: T[]): T[] => {
