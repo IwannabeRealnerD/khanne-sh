@@ -7,6 +7,7 @@
 
   <p align="center">
     시시하지 않은 이력서, khanne을 더 알아 갈수 있는 <s>zsh 아.. 아니</s> khanne-sh(칸쉘)
+    <br />
     <a href="https://iwannaberealnerd.github.io/khanne-sh/">배포 링크</a>
     ·
     <a href="https://github.com/IwannabeRealnerD/khanne-sh/issues">Report Bug</a>
@@ -64,7 +65,8 @@
 
 ## 기능 추가 로드맵
 
-- [ ] Add Changelog 추가
+- [ ] Changelog 추가
+- [ ] OG 이미지 추가
 - [ ] e2e 테스트 (playwright) 추가
 - [ ] 영어 README 작성
 
