@@ -26,3 +26,5 @@ export const setLocalStorageItem = <T extends keyof LocalStorageSetType>(
 	const serializedData = JSON.stringify(value);
 	localStorage.setItem(key, serializedData);
 };
+
+

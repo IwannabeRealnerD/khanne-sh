@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="https://github.com/IwannabeRealnerD/khanne-sh">
     <img src="images/original_favicon.png" alt="Logo" width="80" height="80">
   </a>
 
