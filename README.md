@@ -19,9 +19,11 @@
 - 해당 프로젝트는 svelte kit을 이용하여 개발된 터미널 UI를 가진 이력서 입니다.
 
 ## 사용 기술
+<div align="center">
   <img src="https://img.shields.io/badge/svelte-FF3200?style=for-the-badge&logo=svelte&logoColor=white">
   <img src="https://img.shields.io/badge/vite-646CFF?style=for-the-badge&logo=vite&logoColor=white">
   <img src="https://img.shields.io/badge/vitest-6E9F18?style=for-the-badge&logo=vitest&logoColor=white">
+</div>
 
 ## 배포 환경
 - github pages를 이용하여 배포 [배포 링크](https://iwannaberealnerd.github.io/khanne-sh/)
