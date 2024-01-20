@@ -29,7 +29,6 @@ export const checkDuplicatedCommand = (
 
 export const outputCreator = (inputCommand: string) => {
 	const action = COMMAND_ACTIONS[inputCommand];
-	console.log(action);
 	return action ? action() : `khanne-sh: command not found: ${inputCommand}`;
 };
 
