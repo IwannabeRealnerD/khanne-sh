@@ -13,7 +13,7 @@
 
 	let commandArr: CommandType[] | undefined = [];
 	let inputCommand: string;
-	let scrollBind: HTMLElement;
+	let inputBind: HTMLElement;
 
 	const commandOnSubmit = async () => {
 		putLocalStorageArr({
@@ -39,7 +39,7 @@
 		];
 		inputCommand = "";
 		await tick();
-		scrollBind.scrollTop = scrollBind.scrollHeight;
+		window.scrollTo(0, document.body.scrollHeight);
 	};
 
 	onMount(async () => {
@@ -49,19 +49,20 @@
 		}
 		commandArr = history;
 		await tick();
-		scrollBind.scrollTop = scrollBind.scrollHeight;
+		window.scrollTo(0, document.body.scrollHeight);
+		inputBind.focus();
 	});
 </script>
 
 <main class="container">
-	<div class="commandArrWrapper" bind:this={scrollBind}>
+	<div>
 		{#if commandArr === undefined || commandArr.length === 0}
 			<article class="commandWrapper">
 				<p class="welcomeMessage">Welcome to khanne-sh</p>
 				<p class="welcomeMessage">Ask what you want to know about him</p>
 				<p class="welcomeMessage">
-					If this is your first time with khanne-sh, start with <span class="validInput"
-						>help</span
+					If this is your first time with khanne-sh, start with <span
+						class="validInput">help</span
 					> command
 				</p>
 			</article>
@@ -89,7 +90,7 @@
 				class={`inputTag ${isValidCommand(inputCommand)}`}
 				name="command"
 				bind:value={inputCommand}
-				autofocus
+				bind:this={inputBind}
 			/>
 		</form>
 	</div>
@@ -101,11 +102,7 @@
 		height: 100vh;
 		display: flex;
 		flex-direction: column;
-		background-color: #282935;
 		padding: 1rem;
-	}
-	.commandArrWrapper {
-		overflow: scroll;
 	}
 	.welcomeMessage {
 		color: rgb(156, 156, 156);
