@@ -1,6 +1,6 @@
 {
-	"name": "sveltetest",
-	"version": "0.0.1",
+	"name": "khanne-sh",
+	"version": "1.1",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev",
