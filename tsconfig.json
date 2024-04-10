@@ -10,13 +10,7 @@
 		"strict": true,
 		"strictNullChecks": true,
 		"module": "esnext",
-		"baseUrl": "./",
-		"ignoreDeprecations": "5.0",
-		"paths": {
-			"$/*": ["src/*"],
-			"$lib": ["./src/lib"],
-			"$lib/*": ["./src/lib/*"]
-		}
+		"ignoreDeprecations": "5.0"
 	},
 	"exclude": ["node_modules,tsconfig.json"]
 }
