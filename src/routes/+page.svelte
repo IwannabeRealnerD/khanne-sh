@@ -72,7 +72,7 @@
 				<article class="commandWrapper">
 					<div class="commandContainer">
 						<p class="userInputCommand">khanne-sh :</p>
-						<p class={`inputTag ${isValidCommand(command.command)}`}>
+						<p class={`previousInput ${isValidCommand(command.command)}`}>
 							{command.command}
 						</p>
 					</div>
@@ -98,10 +98,6 @@
 
 <style>
 	.container {
-		width: 100%;
-		height: 100vh;
-		display: flex;
-		flex-direction: column;
 		padding: 1rem;
 	}
 	.welcomeMessage {
@@ -127,12 +123,16 @@
 		white-space: pre-wrap;
 		color: #f1f0ef;
 	}
+	.previousInput {
+		width: 100%;
+	}
 	.inputTag {
 		width: 100%;
 		border: none;
 		background-color: transparent;
 		caret-color: white;
 		padding: 0;
+		margin-bottom: 2rem;
 	}
 	.inputTag:focus {
 		outline: none;
