@@ -10,6 +10,7 @@
 		outputCreator,
 		putLocalStorageArr
 	} from "./util";
+	import { WelcomeMessage, HistoryLine } from "./components";
 
 	let commandArr: CommandType[] | undefined = [];
 	let inputCommand: string;
@@ -57,27 +58,11 @@
 <main class="container">
 	<div>
 		{#if commandArr === undefined || commandArr.length === 0}
-			<article class="commandWrapper">
-				<p class="welcomeMessage">Welcome to khanne-sh</p>
-				<p class="welcomeMessage">Ask what you want to know about him</p>
-				<p class="welcomeMessage">
-					If this is your first time with khanne-sh, start with <span
-						class="validInput">help</span
-					> command
-				</p>
-			</article>
+			<WelcomeMessage />
 		{/if}
 		{#if commandArr}
 			{#each commandArr as command}
-				<article class="commandWrapper">
-					<div class="commandContainer">
-						<p class="userInputCommand">khanne-sh :</p>
-						<p class={`previousInput ${isValidCommand(command.command)}`}>
-							{command.command}
-						</p>
-					</div>
-					<p class="commandOutput">{command.result}</p>
-				</article>
+				<HistoryLine {command} />
 			{/each}
 		{/if}
 		<form
