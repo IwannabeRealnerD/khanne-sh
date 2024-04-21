@@ -4,11 +4,11 @@ import { getLocalStorageItem, setLocalStorageItem } from "$/lib/util";
 
 import { COMMAND_ACTIONS, COMMAND_OBJ } from "./constant";
 
-export const isValidCommand = (userInputCommand?: string) => {
-	for (const value of Object.values(COMMAND_OBJ)) {
-		if (value === userInputCommand) {
-			return "validInput";
-		}
+export const isValidCommand = (userInputCommand: string) => {
+	const isValidInput =
+		Object.values(COMMAND_OBJ).includes(userInputCommand)
+	if (isValidInput) {
+		return "validInput";
 	}
 	return "invalidInput";
 };

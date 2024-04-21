@@ -1,5 +1,3 @@
-import { claerStorageArr } from "./util";
-
 export const COMMAND_OBJ = {
 	HELP: "help",
 	ABOUT: "about",
@@ -24,7 +22,6 @@ export const COMMAND_ACTIONS = {
 	},
 	[COMMAND_OBJ.PWD]: () => window.location.href,
 	[COMMAND_OBJ.CLEAR]: () => {
-		claerStorageArr();
 		return "khanne-sh history is cleared.";
 	}
 };

@@ -5,6 +5,7 @@
 	import { getLocalStorageItem } from "$/lib/util";
 
 	import {
+		claerStorageArr,
 		historyLengthCutter,
 		isValidCommand,
 		outputCreator,
@@ -13,31 +14,31 @@
 	import { WelcomeMessage, HistoryLine } from "./components";
 
 	let commandArr: CommandType[] | undefined = [];
-	let inputCommand: string;
+	let inputCommand = "";
 	let inputBind: HTMLElement;
 
 	const commandOnSubmit = async () => {
-		putLocalStorageArr({
-			command: inputCommand ?? "",
+		if (inputCommand == "clear") {
+			commandArr = [];
+			inputCommand = "";
+			claerStorageArr();
+			return;
+		}
+
+		const commandObject = {
+			command: inputCommand,
 			result: outputCreator(inputCommand)
-		});
+		};
+		putLocalStorageArr(commandObject);
 		if (!commandArr) {
-			commandArr = [
-				{
-					command: inputCommand,
-					result: outputCreator(inputCommand)
-				}
-			];
+			commandArr = [commandObject];
 			inputCommand = "";
 			await tick();
 			scroll(0, document.body.scrollHeight);
 			return;
 		}
 		const cutArr = historyLengthCutter(commandArr);
-		commandArr = [
-			...cutArr,
-			{ command: inputCommand, result: outputCreator(inputCommand) }
-		];
+		commandArr = [...cutArr, commandObject];
 		inputCommand = "";
 		await tick();
 		window.scrollTo(0, document.body.scrollHeight);
@@ -85,17 +86,6 @@
 	.container {
 		padding: 1rem;
 	}
-	.welcomeMessage {
-		color: rgb(156, 156, 156);
-	}
-	.commandWrapper {
-		border-bottom: dashed 1.5px #686767;
-		padding: 0.5rem 0;
-	}
-	.commandContainer {
-		display: flex;
-	}
-
 	.formContainer {
 		display: flex;
 		padding: 0.5rem 0;
