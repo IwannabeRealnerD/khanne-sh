@@ -5,8 +5,7 @@ import { getLocalStorageItem, setLocalStorageItem } from "$/lib/util";
 import { COMMAND_ACTIONS, COMMAND_OBJ } from "./constant";
 
 export const isValidCommand = (userInputCommand: string) => {
-	const isValidInput =
-		Object.values(COMMAND_OBJ).includes(userInputCommand)
+	const isValidInput = Object.values(COMMAND_OBJ).includes(userInputCommand);
 	if (isValidInput) {
 		return "validInput";
 	}
@@ -15,16 +14,6 @@ export const isValidCommand = (userInputCommand: string) => {
 
 export const historyLengthCutter = <T>(commandArr: T[]): T[] => {
 	return commandArr.slice(-40);
-};
-
-export const checkDuplicatedCommand = (
-	command: string,
-	resultArr: string[]
-) => {
-	if (resultArr.length < 3) return false;
-	return resultArr
-		.slice(resultArr.length - 3)
-		.every((value) => value === command);
 };
 
 export const outputCreator = (inputCommand: string) => {
