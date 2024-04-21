@@ -22,6 +22,6 @@ export const COMMAND_ACTIONS = {
 	},
 	[COMMAND_OBJ.PWD]: () => window.location.href,
 	[COMMAND_OBJ.CLEAR]: () => {
-		return "khanne-sh history is cleared.";
+		return "";
 	}
 };
