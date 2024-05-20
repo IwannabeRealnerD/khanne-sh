@@ -81,7 +81,6 @@
 			autocomplete="off"
 			class="formContainer"
 		>
-			{inputCommand}
 			{#if inputCommand && availableCommands.length !== 0}
 				<AutoComplete
 					on:commandChange={changeCommandHanlder}
