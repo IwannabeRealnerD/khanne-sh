@@ -13,6 +13,7 @@
 		putLocalStorageArr
 	} from "./util";
 	import { WelcomeMessage, HistoryLine, AutoComplete } from "./components";
+	import type { ChangeCommandEvent } from "./type";
 
 	let commandArr: CommandType[] | undefined = [];
 	let inputCommand = "";
@@ -45,7 +46,14 @@
 		window.scrollTo(0, document.body.scrollHeight);
 	};
 
+	const changeCommandHanlder = (
+		changeCommandEvent: CustomEvent<ChangeCommandEvent>
+	) => {
+		inputCommand = changeCommandEvent.detail.command;
+	};
+
 	$: availableCommands = findAvailableCommand(inputCommand);
+
 	onMount(async () => {
 		let history = getLocalStorageItem(TERMINAL_HISTORY_KEY);
 		if (history && history.length > 50) {
@@ -73,8 +81,13 @@
 			autocomplete="off"
 			class="formContainer"
 		>
+			{inputCommand}
 			{#if inputCommand && availableCommands.length !== 0}
-				<AutoComplete currentInput={inputCommand} {availableCommands} />
+				<AutoComplete
+					on:commandChange={changeCommandHanlder}
+					currentInput={inputCommand}
+					{availableCommands}
+				/>
 			{/if}
 			<p class="userInputCommand">khanne-sh :</p>
 			<input

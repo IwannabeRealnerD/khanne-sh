@@ -1,9 +1,15 @@
 <script lang="ts">
 	import clsx from "clsx";
 	import { onDestroy, onMount, tick } from "svelte";
+	import { createEventDispatcher } from "svelte";
+	import type { ChangeCommandEvent } from "../type";
 
-	export let currentInput;
-	export let availableCommands;
+	const dispatch = createEventDispatcher<{
+		commandChange: ChangeCommandEvent;
+	}>();
+
+	export let currentInput: string;
+	export let availableCommands: string[];
 
 	let pElement: HTMLElement;
 	let focusIndex = 0;
@@ -17,6 +23,14 @@
 		if (KeyboardDownEvent.code === "ArrowUp") {
 			KeyboardDownEvent.preventDefault();
 			focusIndex -= 1;
+			return;
+		}
+		if (KeyboardDownEvent.code === "Enter") {
+			KeyboardDownEvent.preventDefault();
+			const selectedCommand = availableCommands[focusIndex];
+			dispatch("commandChange", {
+				command: selectedCommand
+			});
 			return;
 		}
 	};
