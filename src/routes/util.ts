@@ -2,10 +2,12 @@ import { TERMINAL_HISTORY_KEY } from "$/constants";
 import type { CommandType } from "$/type";
 import { getLocalStorageItem, setLocalStorageItem } from "$/lib/util";
 
-import { COMMAND_ACTIONS, COMMAND_OBJ } from "./constant";
+import { COMMAND_ACTIONS, COMMANDS, type TCommandValues } from "./constant";
 
 export const isValidCommand = (userInputCommand: string) => {
-	const isValidInput = Object.values(COMMAND_OBJ).includes(userInputCommand);
+	const isValidInput = Object.values(COMMANDS).includes(
+		userInputCommand as TCommandValues
+	);
 	if (isValidInput) {
 		return "validInput";
 	}
@@ -16,8 +18,16 @@ export const historyLengthCutter = <T>(commandArr: T[]): T[] => {
 	return commandArr.slice(-40);
 };
 
+export const findAvailableCommand = (inputCommand: string) => {
+	if (inputCommand === "") {
+		return [];
+	}
+	const commandArr = Object.values(COMMANDS);
+	return commandArr.filter((command) => command.startsWith(inputCommand));
+};
+
 export const outputCreator = (inputCommand: string) => {
-	const action = COMMAND_ACTIONS[inputCommand];
+	const action = COMMAND_ACTIONS[inputCommand as TCommandValues];
 	return action ? action() : `khanne-sh: command not found: ${inputCommand}`;
 };
 

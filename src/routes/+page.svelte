@@ -6,12 +6,13 @@
 
 	import {
 		claerStorageArr,
+		findAvailableCommand,
 		historyLengthCutter,
 		isValidCommand,
 		outputCreator,
 		putLocalStorageArr
 	} from "./util";
-	import { WelcomeMessage, HistoryLine } from "./components";
+	import { WelcomeMessage, HistoryLine, AutoComplete } from "./components";
 
 	let commandArr: CommandType[] | undefined = [];
 	let inputCommand = "";
@@ -44,6 +45,7 @@
 		window.scrollTo(0, document.body.scrollHeight);
 	};
 
+	$: availableCommands = findAvailableCommand(inputCommand);
 	onMount(async () => {
 		let history = getLocalStorageItem(TERMINAL_HISTORY_KEY);
 		if (history && history.length > 50) {
@@ -71,6 +73,9 @@
 			autocomplete="off"
 			class="formContainer"
 		>
+			{#if inputCommand && availableCommands.length !== 0}
+				<AutoComplete currentInput={inputCommand} {availableCommands} />
+			{/if}
 			<p class="userInputCommand">khanne-sh :</p>
 			<input
 				class={`inputTag ${isValidCommand(inputCommand)}`}
@@ -89,6 +94,7 @@
 	.formContainer {
 		display: flex;
 		padding: 0.5rem 0;
+		position: relative;
 	}
 	.userInputCommand {
 		color: #57c6fe;
