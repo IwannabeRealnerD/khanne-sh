@@ -13,8 +13,13 @@
 
 	let pElement: HTMLElement;
 	let focusIndex = 0;
+	$: isWholeCommand = availableCommands[focusIndex] === currentInput;
 
 	const onDownArrowDown = (KeyboardDownEvent: KeyboardEvent) => {
+		if (KeyboardDownEvent.code === "Enter" && isWholeCommand) {
+			return;
+		}
+
 		if (KeyboardDownEvent.code === "ArrowDown") {
 			KeyboardDownEvent.preventDefault();
 			focusIndex += 1;
@@ -51,18 +56,20 @@
 </script>
 
 <article style="margin-left: {leftMargin}px" class="wrapper">
-	<ul>
-		{#each availableCommands as command, index (command)}<li>
-				<button
-					class={clsx("suggestionContainer", {
-						activeSuggestion: index === focusIndex
-					})}
-					on:click={() => {
-						focusIndex = index;
-					}}>{command}</button
-				>
-			</li>{/each}
-	</ul>
+	{#if !isWholeCommand}
+		<ul>
+			{#each availableCommands as command, index (command)}<li>
+					<button
+						class={clsx("suggestionContainer", {
+							activeSuggestion: index === focusIndex
+						})}
+						on:click={() => {
+							focusIndex = index;
+						}}>{command}</button
+					>
+				</li>{/each}
+		</ul>
+	{/if}
 	<p bind:this={pElement} class="forCurrentInputSize" aria-hidden>
 		{currentInput}
 	</p>
