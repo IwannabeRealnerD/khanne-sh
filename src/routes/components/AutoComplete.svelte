@@ -22,12 +22,16 @@
 
 		if (KeyboardDownEvent.code === "ArrowDown") {
 			KeyboardDownEvent.preventDefault();
-			focusIndex += 1;
+			const nextIndex =
+				availableCommands.length - 1 <= focusIndex ? 0 : focusIndex + 1;
+			focusIndex = nextIndex;
 			return;
 		}
 		if (KeyboardDownEvent.code === "ArrowUp") {
 			KeyboardDownEvent.preventDefault();
-			focusIndex -= 1;
+			const nextIndex =
+				focusIndex - 1 < 0 ? availableCommands.length - 1 : focusIndex - 1;
+			focusIndex = nextIndex;
 			return;
 		}
 		if (KeyboardDownEvent.code === "Enter") {
