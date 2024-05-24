@@ -92,7 +92,7 @@
 					{availableCommands}
 				/>
 			{/if}
-			<p class="userInputCommand">khanne-sh :</p>
+			<p class="userInputCommand">khanne-sh :</p>ㅎ
 			<input
 				class={`inputTag ${isValidCommand(inputCommand)}`}
 				name="command"

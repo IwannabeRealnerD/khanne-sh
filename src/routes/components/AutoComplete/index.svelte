@@ -56,7 +56,6 @@
 </script>
 
 <article style="margin-left: {leftMargin}px" class="wrapper">
-	<!-- {#if !isWholeCommand} -->
 	<ul>
 		{#each availableCommands as command, index (command)}<li>
 				<button
@@ -69,7 +68,6 @@
 				>
 			</li>{/each}
 	</ul>
-	<!-- {/if} -->
 	<p bind:this={pElement} class="forCurrentInputSize" aria-hidden>
 		{currentInput}
 	</p>
