@@ -1,8 +1,9 @@
 <script lang="ts">
 	import clsx from "clsx";
-	import { onDestroy, onMount, tick } from "svelte";
-	import { createEventDispatcher } from "svelte";
-	import type { ChangeCommandEvent } from "../type";
+	import { onDestroy, onMount, tick, createEventDispatcher } from "svelte";
+
+	import { findNextIndex, findPreviousIndex } from "./util";
+	import type { ChangeCommandEvent } from "../../type";
 
 	const dispatch = createEventDispatcher<{
 		commandChange: ChangeCommandEvent;
@@ -22,16 +23,12 @@
 
 		if (KeyboardDownEvent.code === "ArrowDown") {
 			KeyboardDownEvent.preventDefault();
-			const nextIndex =
-				availableCommands.length - 1 <= focusIndex ? 0 : focusIndex + 1;
-			focusIndex = nextIndex;
+			focusIndex = findNextIndex(availableCommands, focusIndex);
 			return;
 		}
 		if (KeyboardDownEvent.code === "ArrowUp") {
 			KeyboardDownEvent.preventDefault();
-			const nextIndex =
-				focusIndex - 1 < 0 ? availableCommands.length - 1 : focusIndex - 1;
-			focusIndex = nextIndex;
+			focusIndex = findPreviousIndex(availableCommands, focusIndex);
 			return;
 		}
 		if (KeyboardDownEvent.code === "Enter") {
