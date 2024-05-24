@@ -145,4 +145,6 @@ button {
 	padding: 0;
 	border: none;
 	background: none;
+	font-family: inherit;
+	font-size: inherit;
 }
