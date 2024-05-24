@@ -50,27 +50,26 @@
 	$: leftMargin = 0;
 	$: if (currentInput) {
 		tick().then(() => {
-			console.log("offsetWidth", pElement?.offsetWidth);
 			leftMargin = pElement?.offsetWidth || 0;
 		});
 	}
 </script>
 
 <article style="margin-left: {leftMargin}px" class="wrapper">
-	{#if !isWholeCommand}
-		<ul>
-			{#each availableCommands as command, index (command)}<li>
-					<button
-						class={clsx("suggestionContainer", {
-							activeSuggestion: index === focusIndex
-						})}
-						on:click={() => {
-							focusIndex = index;
-						}}>{command}</button
-					>
-				</li>{/each}
-		</ul>
-	{/if}
+	<!-- {#if !isWholeCommand} -->
+	<ul>
+		{#each availableCommands as command, index (command)}<li>
+				<button
+					class={clsx("suggestionContainer", {
+						activeSuggestion: index === focusIndex
+					})}
+					on:click={() => {
+						focusIndex = index;
+					}}>{command}</button
+				>
+			</li>{/each}
+	</ul>
+	<!-- {/if} -->
 	<p bind:this={pElement} class="forCurrentInputSize" aria-hidden>
 		{currentInput}
 	</p>

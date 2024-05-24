@@ -14,6 +14,7 @@
 	} from "./util";
 	import { WelcomeMessage, HistoryLine, AutoComplete } from "./components";
 	import type { ChangeCommandEvent } from "./type";
+	import { COMMANDS } from "./constant";
 
 	let commandArr: CommandType[] | undefined = [];
 	let inputCommand = "";
@@ -53,6 +54,9 @@
 	};
 
 	$: availableCommands = findAvailableCommand(inputCommand);
+	$: isWholeCommand = Object.values(COMMANDS).find(
+		(value) => value === inputCommand
+	);
 
 	onMount(async () => {
 		let history = getLocalStorageItem(TERMINAL_HISTORY_KEY);
@@ -81,7 +85,7 @@
 			autocomplete="off"
 			class="formContainer"
 		>
-			{#if inputCommand && availableCommands.length !== 0}
+			{#if availableCommands.length !== 0 && !isWholeCommand}
 				<AutoComplete
 					on:commandChange={changeCommandHanlder}
 					currentInput={inputCommand}
