@@ -44,7 +44,6 @@ export const COMMAND_ACTIONS: COMMAND_ACTIONS_DEF = {
 			commandOutput = commandOutput.concat(
 				` ${index + 1}. ${command} : ${commandResult}\n`
 			);
-			console.log("here");
 		});
 		return commandOutput;
 	},
