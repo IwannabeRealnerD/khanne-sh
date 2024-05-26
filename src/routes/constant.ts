@@ -16,13 +16,13 @@ type COMMAND_ACTIONS_DEF = {
 type HELP_OUTPUT_DEF = { [P in TCommandValues]: string };
 
 export const HELP_COMMAND: HELP_OUTPUT_DEF = {
-	about: "to get information about this project",
-	blog: "open new window for khanne's blog",
-	clear: "to clear history",
-	contact: "to get khanne's contact",
-	github: "open new window for khanne's github",
-	help: "to see available commands",
-	pwd: "to see current url"
+	about: "Get information about this project",
+	blog: "Open new window for khanne's blog",
+	clear: "Clear history",
+	contact: "Get khanne's contact information",
+	github: "Open new window for khanne's GitHub",
+	help: "Display available commands",
+	pwd: "Show current URL"
 };
 
 export const COMMAND_ACTIONS: COMMAND_ACTIONS_DEF = {
