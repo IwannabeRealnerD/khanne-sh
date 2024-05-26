@@ -1,3 +1,5 @@
+import { makeHelpOutput } from "./util";
+
 export const COMMANDS = {
 	ABOUT: "about",
 	BLOG: "blog",
@@ -39,13 +41,7 @@ export const COMMAND_ACTIONS: COMMAND_ACTIONS_DEF = {
 		return "- Email: iwannaberealnerd@gmail.com\n- Phone Number: +821051200592\n- LinkedIn: www.linkedin.com/in/honggwanjeong";
 	},
 	[COMMANDS.HELP]: () => {
-		let commandOutput = "Here are commands that you can use: \n";
-		Object.entries(HELP_COMMAND).forEach(([command, commandResult], index) => {
-			commandOutput = commandOutput.concat(
-				` ${index + 1}. ${command} : ${commandResult}\n`
-			);
-		});
-		return commandOutput;
+		return makeHelpOutput();
 	},
 	[COMMANDS.GITHUB]: () => {
 		window.open("https://github.com/IwannabeRealnerD");
