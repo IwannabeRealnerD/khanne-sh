@@ -2,7 +2,12 @@ import { TERMINAL_HISTORY_KEY } from "$/constants";
 import type { CommandType } from "$/type";
 import { getLocalStorageItem, setLocalStorageItem } from "$/lib/util";
 
-import { COMMAND_ACTIONS, COMMANDS, type TCommandValues } from "./constant";
+import {
+	COMMAND_ACTIONS,
+	COMMANDS,
+	HELP_COMMAND,
+	type TCommandValues
+} from "./constant";
 
 export const isValidCommand = (userInputCommand: string) => {
 	const isValidInput = Object.values(COMMANDS).includes(
@@ -49,4 +54,14 @@ export const putLocalStorageArr = (commandObj: CommandType) => {
 
 export const claerStorageArr = () => {
 	setLocalStorageItem(TERMINAL_HISTORY_KEY, []);
+};
+
+export const makeHelpOutput = () => {
+	let commandOutput = "Here are commands that you can use: \n";
+	Object.entries(HELP_COMMAND).forEach(([command, commandResult], index) => {
+		commandOutput = commandOutput.concat(
+			` ${index + 1}. ${command} : ${commandResult}\n`
+		);
+	});
+	return commandOutput;
 };
