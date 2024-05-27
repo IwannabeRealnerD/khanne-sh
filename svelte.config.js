@@ -9,7 +9,7 @@ const config = {
 
 	kit: {
 		adapter: adapter(),
-		alias: { "$/*": "src/*", "$constants": "src/constants/*" },
+		alias: { "$/*": "src/*" },
 		paths: {
 			base: process.env.NODE_ENV === "production" ? "/khanne-sh" : ""
 		}
