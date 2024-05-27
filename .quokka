@@ -1,4 +1,9 @@
 {
+	"env": {
+		"params": {
+			"runner": "--experimental-specifier-resolution=node"
+		}
+	},
 	"ts": {
 		"compilerOptions": {
 			"baseUrl": "./src"
