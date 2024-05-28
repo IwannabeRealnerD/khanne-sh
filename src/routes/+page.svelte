@@ -5,7 +5,7 @@
 	import { getLocalStorageItem } from "$/lib/util";
 
 	import {
-		claerStorageArr,
+		clearStorageArr,
 		findAvailableCommand,
 		historyLengthCutter,
 		isValidCommand,
@@ -24,10 +24,9 @@
 		if (inputCommand == "clear") {
 			commandArr = [];
 			inputCommand = "";
-			claerStorageArr();
+			clearStorageArr();
 			return;
 		}
-
 		const commandObject = {
 			command: inputCommand,
 			result: outputCreator(inputCommand)
@@ -47,7 +46,7 @@
 		window.scrollTo(0, document.body.scrollHeight);
 	};
 
-	const changeCommandHanlder = (
+	const changeCommandHandler = (
 		changeCommandEvent: CustomEvent<ChangeCommandEvent>
 	) => {
 		inputCommand = changeCommandEvent.detail.command;
@@ -87,7 +86,7 @@
 		>
 			{#if availableCommands.length !== 0 && !isWholeCommand}
 				<AutoComplete
-					on:commandChange={changeCommandHanlder}
+					on:commandChange={changeCommandHandler}
 					currentInput={inputCommand}
 					{availableCommands}
 				/>

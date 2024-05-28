@@ -24,7 +24,7 @@ describe("findNextIndex()", () => {
 });
 describe("findPreviousIndex()", () => {
 	const targetArray = [0, 1, 2, 3, 4, 5];
-	it("should return the previous(thrid) index when it's current is not last and first index", () => {
+	it("should return the previous(third) index when it's current is not last and first index", () => {
 		const currentIndex = 4;
 		const result = findPreviousIndex(targetArray, currentIndex);
 		expect(result).toBe(3);
