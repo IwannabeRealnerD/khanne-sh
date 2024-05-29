@@ -15,7 +15,7 @@ describe("findAvailableCommand - 입력한 문자에 해당하는 명령어 배�
 		expect(result).toEqual(["pwd"]);
 	});
 	it("해당되는 명령어가 없을 경우 빈배열 출력", () => {
-		const result = findAvailableCommand("cwefjoi");
+		const result = findAvailableCommand("notExisting");
 		expect(result).toEqual([]);
 	});
 });

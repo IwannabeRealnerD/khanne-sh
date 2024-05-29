@@ -52,7 +52,7 @@ export const putLocalStorageArr = (commandObj: CommandType) => {
 	setLocalStorageItem(TERMINAL_HISTORY_KEY, prevCommandArr);
 };
 
-export const claerStorageArr = () => {
+export const clearStorageArr = () => {
 	setLocalStorageItem(TERMINAL_HISTORY_KEY, []);
 };
 

@@ -5,6 +5,7 @@ module.exports = {
 		"eslint:recommended",
 		"plugin:@typescript-eslint/recommended",
 		"plugin:svelte/recommended",
+		"plugin:@cspell/recommended",
 		"prettier"
 	],
 	parser: "@typescript-eslint/parser",
@@ -18,6 +19,9 @@ module.exports = {
 		browser: true,
 		es2017: true,
 		node: true
+	},
+	rules: {
+		"@cspell/spellchecker": ["error", { checkComments: false }]
 	},
 	overrides: [
 		{
