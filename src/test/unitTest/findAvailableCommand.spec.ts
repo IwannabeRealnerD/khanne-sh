@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { findAvailableCommand } from "$/routes/util";
+import { findAvailableCommand } from "$routes/util";
 
 describe("findAvailableCommand - 입력한 문자에 해당하는 명령어 배열을 반환하는 함수", () => {
 	it("he가 입력됐을 때 help 출력", () => {

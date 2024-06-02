@@ -1,4 +1,4 @@
-import type { CommandType, CountType, TestType } from "$/type";
+import type { CommandType, CountType, TestType } from "$/lib/types";
 
 type LocalStorageCommonKeys = "COMMAND" | "TEST" | "COUNT";
 
