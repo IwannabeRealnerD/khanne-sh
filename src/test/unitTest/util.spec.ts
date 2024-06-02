@@ -1,18 +1,24 @@
 import { describe, expect, it } from "vitest";
 import { historyLengthCutter } from "$/routes/util";
 
-describe("명령어 객체 배열이 100개가 넘을 경우 index 0-90 함수만 남겨놓는 함수", () => {
-	it("50개 이상 입력 됐을때 배열의 최신 요소 10개만 반환 확인", () => {
-		const baseArr = Array.from(Array(50).keys());
-		const commandArr = [...baseArr, "0", "1"];
-		const expectedArr = [...baseArr.slice(12), "0", "1"];
-		const result = historyLengthCutter(commandArr);
+describe("historyLengthCutter", () => {
+	const baseArr = [...Array.from(Array(50).keys()), 0, 1]; // 0 to 49
+	const base40ElementsArr = [...Array.from(Array(40).keys())]; // 0 to 39
+	it("should return only the last 40 elements when more than 50 items are input", () => {
+		const expectedArr = [
+			12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
+			30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47,
+			48, 49, 0, 1
+		];
+		const result = historyLengthCutter(baseArr);
 		expect(result).toEqual(expectedArr);
 	});
-	it("50개 이상 입력 됐을때 배열의 최신 요소 40개만 반환 확인", () => {
-		const baseArr = Array.from(Array(50).keys());
-		const commandArr = [...baseArr, "0", "1"];
-		const result = historyLengthCutter(commandArr);
+	it("should return 40 elements when input is 50", () => {
+		const result = historyLengthCutter(baseArr);
 		expect(result.length).toBe(40);
+	});
+	it("should return same elements when input is 40", () => {
+		const result = historyLengthCutter(base40ElementsArr);
+		expect(result).toEqual(base40ElementsArr);
 	});
 });
