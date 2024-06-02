@@ -13,8 +13,6 @@ describe("makeHelpOutput()", () => {
 		const commands = Object.values(COMMANDS);
 		const helpOutput = makeHelpOutput();
 		const lineCount = helpOutput.split("\n").length - 2;
-		console.log(lineCount);
-		console.log(helpOutput);
 		expect(lineCount).toBe(commands.length);
 	});
 });
