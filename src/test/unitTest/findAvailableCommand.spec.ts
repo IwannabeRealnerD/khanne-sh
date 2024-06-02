@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { findAvailableCommand } from "$/routes/util";
+import { findAvailableCommand } from "$routes/util";
 
 describe("findAvailableCommand()", () => {
 	it('should return "help" when input is "he', () => {
