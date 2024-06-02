@@ -28,7 +28,13 @@ export const findAvailableCommand = (inputCommand: string) => {
 		return [];
 	}
 	const commandArr = Object.values(COMMANDS);
-	return commandArr.filter((command) => command.startsWith(inputCommand));
+	const filteredCommandArr = commandArr.filter((command) =>
+		command.startsWith(inputCommand)
+	);
+	if (filteredCommandArr.find((command) => command === inputCommand)) {
+		return [];
+	}
+	return filteredCommandArr;
 };
 
 export const outputCreator = (inputCommand: string) => {

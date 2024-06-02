@@ -9,4 +9,10 @@ describe("makeHelpOutput()", () => {
 			expect(helpOutput).toContain(command);
 		});
 	});
+	it('length of "help" command should be same with the number of commands', () => {
+		const commands = Object.values(COMMANDS);
+		const helpOutput = makeHelpOutput();
+		const lineCount = helpOutput.split("\n").length - 2;
+		expect(lineCount).toBe(commands.length);
+	});
 });
