@@ -1,5 +1,11 @@
 import type { LocalStorageGetType, LocalStorageSetType } from "./type";
 
+import { prerender } from "$/routes/+layout";
+
+import { COMMANDS } from "$/routes/constant";
+prerender;
+COMMANDS;
+
 export const resetLocalStorage = (key: keyof LocalStorageGetType) => {
 	localStorage.removeItem(key);
 };
