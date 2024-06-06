@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { onMount, tick } from "svelte";
-	import type { CommandType } from "$/type";
-	import { TERMINAL_HISTORY_KEY } from "$/constants";
-	import { getLocalStorageItem } from "$/lib/util";
+	import type { CommandType } from "$lib/types";
+	import { TERMINAL_HISTORY_KEY } from "$lib/constants";
+	import { getLocalStorageItem } from "$lib/utils";
 
 	import {
 		clearStorageArr,

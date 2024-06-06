@@ -1,6 +1,6 @@
-import { TERMINAL_HISTORY_KEY } from "$/constants";
-import type { CommandType } from "$/type";
-import { getLocalStorageItem, setLocalStorageItem } from "$/lib/util";
+import { TERMINAL_HISTORY_KEY } from "$lib/constants";
+import type { CommandType } from "$lib/types";
+import { getLocalStorageItem, setLocalStorageItem } from "$lib/utils";
 
 import {
 	COMMAND_ACTIONS,
@@ -28,7 +28,13 @@ export const findAvailableCommand = (inputCommand: string) => {
 		return [];
 	}
 	const commandArr = Object.values(COMMANDS);
-	return commandArr.filter((command) => command.startsWith(inputCommand));
+	const filteredCommandArr = commandArr.filter((command) =>
+		command.startsWith(inputCommand)
+	);
+	if (filteredCommandArr.find((command) => command === inputCommand)) {
+		return [];
+	}
+	return filteredCommandArr;
 };
 
 export const outputCreator = (inputCommand: string) => {
