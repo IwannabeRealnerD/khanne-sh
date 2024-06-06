@@ -1,6 +1,10 @@
 /** @type { import("eslint").Linter.Config } */
 module.exports = {
-	root: true,
+	env: {
+		browser: true,
+		es2017: true,
+		node: true
+	},
 	extends: [
 		"eslint:recommended",
 		"plugin:@typescript-eslint/recommended",
@@ -8,39 +12,33 @@ module.exports = {
 		"plugin:@cspell/recommended",
 		"prettier"
 	],
+	overrides: [
+		{
+			files: ["*.svelte"],
+			parser: "svelte-eslint-parser",
+			parserOptions: {
+				parser: "@typescript-eslint/parser"
+			}
+		}
+	],
 	parser: "@typescript-eslint/parser",
-	plugins: ["@typescript-eslint", "boundaries"],
 	parserOptions: {
-		sourceType: "module",
 		ecmaVersion: 2020,
-		extraFileExtensions: [".svelte"]
+		extraFileExtensions: [".svelte"],
+		sourceType: "module"
 	},
-	settings: {
-		"import/parsers": {
-			"@typescript-eslint/parser": [".ts", ".tsx"]
-		},
-		"import/resolver": {
-			typescript: { alwaysTryTypes: true }
-		},
-		"boundaries/elements": [
-			{
-				type: "lib",
-				pattern: "src/lib"
-			},
-			{
-				type: "test",
-				pattern: "src/test"
-			},
-			{ type: "routes", pattern: "routes" }
-		]
-	},
-	env: {
-		browser: true,
-		es2017: true,
-		node: true
-	},
+	plugins: ["@typescript-eslint", "boundaries", "sort-keys-fix"],
+	root: true,
 	rules: {
 		"@cspell/spellchecker": ["error", { checkComments: false }],
+		"sort-keys-fix/sort-keys-fix": [
+			"error",
+			"asc",
+			{
+				caseSensitive: true,
+				natural: true
+			}
+		]
 		// "boundaries/element-types": [
 		// 	"error",
 		// 	{
@@ -58,13 +56,23 @@ module.exports = {
 		// 	}
 		// ]
 	},
-	overrides: [
-		{
-			files: ["*.svelte"],
-			parser: "svelte-eslint-parser",
-			parserOptions: {
-				parser: "@typescript-eslint/parser"
-			}
+	settings: {
+		"boundaries/elements": [
+			{
+				pattern: "src/lib",
+				type: "lib"
+			},
+			{
+				pattern: "src/test",
+				type: "test"
+			},
+			{ pattern: "routes", type: "routes" }
+		],
+		"import/parsers": {
+			"@typescript-eslint/parser": [".ts", ".tsx"]
+		},
+		"import/resolver": {
+			typescript: { alwaysTryTypes: true }
 		}
-	]
+	}
 };
