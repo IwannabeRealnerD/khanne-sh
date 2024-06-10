@@ -30,12 +30,13 @@
 ## How to use
 ### Available Commands
 ```sh
- help # how to use khanne-sh
- about # Description of the khanne-sh project
- github # Go to khanne's GitHub profile
- blog # Go to khanne's blog
- pwd # Check the current URL
- clear # Delete command history
+	about # Get information about this project,
+	blog # Open new window for khanne's blog,
+	clear # Clear history,
+	contact # Get khanne's contact information,
+	github # Open new window for khanne's GitHub ,
+	help # Display available commands,
+	pwd # Show current URL
 ```
 - Additional commands will be updated soon
 
@@ -43,10 +44,10 @@
 - To get started with this project, you need to clone the reapository and install the dependency.
 
 ### Environment Setup
-- nodejs - 18.16.0
-- pnpm - 8.6.0
+- nodejs - 20.10.0
+- pnpm - 9.13.0
   ```sh
-  corepack prepare pnpm@8.6.0 --activate
+  corepack prepare pnpm@9.13.0 --activate
   ```
 
 ### How to Deploy Dev Server
@@ -65,10 +66,8 @@
 
 ## Upcoming features
 
-- [ ] Changelog
-- [ ] Add an OG image
 - [ ] Implement e2e test (playwright)
-
+- [ ] Enhance README (e.g., how to add commands, etc.)
 
 ## Contact
 khanne - iwannaberealnerd@gmail.com
