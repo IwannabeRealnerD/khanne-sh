@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { historyLengthCutter } from "$routes/util";
+import { historyLengthCutter } from "../../src/routes/util";
 
 describe("historyLengthCutter", () => {
 	const baseArr = [...Array.from(Array(50).keys()), 0, 1]; // 0 to 49
