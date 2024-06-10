@@ -1,6 +1,6 @@
-import { TERMINAL_HISTORY_KEY } from "$lib/constants";
-import type { CommandType } from "$lib/types";
-import { getLocalStorageItem, setLocalStorageItem } from "$lib/utils";
+import { TERMINAL_HISTORY_KEY } from "$lib/constants/localStorageKey";
+import type { CommandType } from "$lib/types/storage";
+import { getLocalStorageItem, setLocalStorageItem } from "$lib/utils/storage";
 
 import {
 	COMMAND_ACTIONS,

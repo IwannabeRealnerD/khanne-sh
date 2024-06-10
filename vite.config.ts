@@ -7,8 +7,8 @@ export default defineConfig({
 		port: 3000
 	},
 	test: {
-		include: ["src/**/*.{test,spec}.{js,ts}"],
+		environment: "jsdom",
 		globals: true,
-		environment: "jsdom"
+		include: ["test/**/*.{test,spec}.{js,ts}"]
 	}
 });

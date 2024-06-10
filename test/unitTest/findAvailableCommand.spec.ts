@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { findAvailableCommand } from "$routes/util";
+import { findAvailableCommand } from "../../src/routes/util";
 
 describe("findAvailableCommand()", () => {
 	it('should return "help" when input is "he', () => {
@@ -18,8 +18,8 @@ describe("findAvailableCommand()", () => {
 		const result = findAvailableCommand("notExisting");
 		expect(result).toEqual([]);
 	});
-	// it("should return empty array when input is same as existing command", () => {
-	// 	const result = findAvailableCommand("clear");
-	// 	expect(result).toEqual([]);
-	// });
+	it("should return empty array when input is same as existing command", () => {
+		const result = findAvailableCommand("clear");
+		expect(result).toEqual([]);
+	});
 });
