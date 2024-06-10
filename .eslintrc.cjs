@@ -31,6 +31,22 @@ module.exports = {
 	root: true,
 	rules: {
 		"@cspell/spellchecker": ["error", { checkComments: false }],
+		"boundaries/element-types": [
+			"error",
+			{
+				default: "allow",
+				rules: [
+					{
+						disallow: ["routes"],
+						from: "lib"
+					},
+					{
+						disallow: ["routes"],
+						from: "test"
+					}
+				]
+			}
+		],
 		"sort-keys-fix/sort-keys-fix": [
 			"error",
 			"asc",
@@ -39,22 +55,6 @@ module.exports = {
 				natural: true
 			}
 		]
-		// "boundaries/element-types": [
-		// 	"error",
-		// 	{
-		// 		default: "allow",
-		// 		rules: [
-		// 			// {
-		// 			// 	from: "lib",
-		// 			// 	disallow: ["routes"]
-		// 			// },
-		// 			// {
-		// 			// 	from: "test",
-		// 			// 	disallow: ["routes"]
-		// 			// }
-		// 		]
-		// 	}
-		// ]
 	},
 	settings: {
 		"boundaries/elements": [
