@@ -67,7 +67,7 @@
 ## Upcoming features
 
 - [ ] Implement e2e test (playwright)
-
+- [ ] Enhance README (e.g., how to add commands, etc.)
 
 ## Contact
 khanne - iwannaberealnerd@gmail.com
