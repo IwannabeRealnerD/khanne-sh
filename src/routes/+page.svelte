@@ -1,12 +1,12 @@
 <script lang="ts">
 	import { onMount, tick } from "svelte";
-	import type { CommandType } from "$lib/types/storage";
-	import { TERMINAL_HISTORY_KEY } from "$lib/constants/localStorageKey";
-	import { getLocalStorageItem } from "$lib/utils/storage";
-	import { UserInputForm } from "./components";
 
+	import { TERMINAL_HISTORY_KEY } from "$lib/constants/localStorageKey";
+	import type { CommandType } from "$lib/types/storage";
 	import { historyLengthCutter } from "$lib/utils/command";
-	import { WelcomeMessage, HistoryLine } from "./components";
+	import { getLocalStorageItem } from "$lib/utils/storage";
+
+	import { UserInputForm, WelcomeMessage, HistoryLine } from "./components";
 
 	let commandArr: CommandType[] | undefined = $state([]);
 	let inputBind: HTMLElement | undefined = $state();

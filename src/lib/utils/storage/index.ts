@@ -1,4 +1,5 @@
 import { HELP_COMMAND } from "$lib/constants/command";
+
 import type { LocalStorageGetType, LocalStorageSetType } from "./type";
 
 export const resetLocalStorage = (key: keyof LocalStorageGetType) => {

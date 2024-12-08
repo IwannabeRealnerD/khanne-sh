@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+
 import { historyLengthCutter } from "../../src/lib/utils/command";
 
 describe("historyLengthCutter", () => {

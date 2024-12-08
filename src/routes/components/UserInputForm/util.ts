@@ -1,10 +1,9 @@
-import { getLocalStorageItem } from "$lib/utils/storage";
-import { TERMINAL_HISTORY_KEY } from "$lib/constants/localStorageKey";
-import { setLocalStorageItem } from "$lib/utils/storage";
 import { COMMAND_ACTIONS, COMMANDS } from "$lib/constants/command";
+import { TERMINAL_HISTORY_KEY } from "$lib/constants/localStorageKey";
 import type { TCommandValues } from "$lib/types/command";
 import type { CommandType } from "$lib/types/storage";
 import { historyLengthCutter } from "$lib/utils/command";
+import { getLocalStorageItem, setLocalStorageItem } from "$lib/utils/storage";
 
 export const findNextIndex = (targetArray: unknown[], currentIndex: number) => {
 	return targetArray.length - 1 <= currentIndex ? 0 : currentIndex + 1;
@@ -55,4 +54,3 @@ export const putLocalStorageArr = (commandObj: CommandType) => {
 export const clearStorageArr = () => {
 	setLocalStorageItem(TERMINAL_HISTORY_KEY, []);
 };
-
