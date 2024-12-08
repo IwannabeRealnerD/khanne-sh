@@ -13,14 +13,14 @@
 		putLocalStorageArr
 	} from "./util";
 	import { WelcomeMessage, HistoryLine, AutoComplete } from "./components";
-	import type { ChangeCommandEvent } from "./type";
 	import { COMMANDS } from "./constant";
 
-	let commandArr: CommandType[] | undefined = [];
-	let inputCommand = "";
-	let inputBind: HTMLElement;
+	let commandArr: CommandType[] | undefined = $state([]);
+	let inputCommand = $state("");
+	let inputBind: HTMLElement | undefined = $state();
 
-	const commandOnSubmit = async () => {
+	const commandOnSubmit = async (event: SubmitEvent) => {
+		event.preventDefault();
 		if (inputCommand == "clear") {
 			commandArr = [];
 			inputCommand = "";
@@ -46,15 +46,13 @@
 		window.scrollTo(0, document.body.scrollHeight);
 	};
 
-	const changeCommandHandler = (
-		changeCommandEvent: CustomEvent<ChangeCommandEvent>
-	) => {
-		inputCommand = changeCommandEvent.detail.command;
+	const changeCommandHandler = (command: string) => {
+		inputCommand = command;
 	};
 
-	$: availableCommands = findAvailableCommand(inputCommand);
-	$: isWholeCommand = Object.values(COMMANDS).find(
-		(value) => value === inputCommand
+	let availableCommands = $derived(findAvailableCommand(inputCommand));
+	let isWholeCommand = $derived(
+		Object.values(COMMANDS).find((value) => value === inputCommand)
 	);
 
 	onMount(async () => {
@@ -65,7 +63,7 @@
 		commandArr = history;
 		await tick();
 		window.scrollTo(0, document.body.scrollHeight);
-		inputBind.focus();
+		inputBind?.focus();
 	});
 </script>
 
@@ -79,14 +77,10 @@
 				<HistoryLine {command} />
 			{/each}
 		{/if}
-		<form
-			on:submit|preventDefault={commandOnSubmit}
-			autocomplete="off"
-			class="formContainer"
-		>
+		<form onsubmit={commandOnSubmit} autocomplete="off" class="formContainer">
 			{#if availableCommands.length !== 0 && !isWholeCommand}
 				<AutoComplete
-					on:commandChange={changeCommandHandler}
+					onChangeCommand={changeCommandHandler}
 					currentInput={inputCommand}
 					{availableCommands}
 				/>
