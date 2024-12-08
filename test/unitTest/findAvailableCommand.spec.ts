@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { findAvailableCommand } from "../../src/routes/util";
+import { findAvailableCommand } from "../../src/routes/components/UserInputForm/util";
 
 describe("findAvailableCommand()", () => {
 	it('should return "help" when input is "he', () => {

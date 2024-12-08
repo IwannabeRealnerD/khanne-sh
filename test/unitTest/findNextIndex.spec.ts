@@ -3,7 +3,7 @@ import { describe, expect, it } from "vitest";
 import {
 	findNextIndex,
 	findPreviousIndex
-} from "../../src/routes/components/AutoComplete/util";
+} from "../../src/routes/components/UserInputForm/util";
 
 describe("findNextIndex()", () => {
 	const targetArray = [0, 1, 2, 3, 4, 5];

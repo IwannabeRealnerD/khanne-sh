@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { isValidCommand } from "../util";
+	import { isValidCommand } from "$lib/utils/command";
 
 	interface Props {
 		command: { command: string; result: string };

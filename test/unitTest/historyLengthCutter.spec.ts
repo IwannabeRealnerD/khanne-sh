@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { historyLengthCutter } from "../../src/routes/util";
+import { historyLengthCutter } from "../../src/lib/utils/command";
 
 describe("historyLengthCutter", () => {
 	const baseArr = [...Array.from(Array(50).keys()), 0, 1]; // 0 to 49
