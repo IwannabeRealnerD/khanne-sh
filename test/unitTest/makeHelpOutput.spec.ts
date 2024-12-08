@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { makeHelpOutput } from "../../src/routes/util";
-import { COMMANDS } from "../../src/routes/constant";
+import { makeHelpOutput } from "../../src/lib/utils/command";
+import { COMMANDS } from "../../src/lib/constants/command";
 
 describe("makeHelpOutput()", () => {
 	it("all commands should be in the result", () => {
