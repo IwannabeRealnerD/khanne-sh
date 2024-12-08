@@ -77,3 +77,7 @@ This project is a web based terminal style resume developed with svelte kit.
 
 ## Contact
 khanne - iwannaberealnerd@gmail.com
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
