@@ -1,7 +1,7 @@
 type CommandDefinition = {
 	name: string;
 	description: string;
-	action: () => string ;
+	action: () => string;
 };
 
 export const COMMAND_DEFINITIONS: { [key: string]: CommandDefinition } = {
@@ -25,7 +25,8 @@ export const COMMAND_DEFINITIONS: { [key: string]: CommandDefinition } = {
 		name: "clear"
 	},
 	CONTACT: {
-		action: () => "- Email: iwannaberealnerd@gmail.com\n- Phone Number: +821051200592\n- LinkedIn: www.linkedin.com/in/honggwanjeong",
+		action: () =>
+			"- Email: iwannaberealnerd@gmail.com\n- Phone Number: +821051200592\n- LinkedIn: www.linkedin.com/in/honggwanjeong",
 		description: "Get khanne's contact information",
 		name: "contact"
 	},
@@ -43,7 +44,7 @@ export const COMMAND_DEFINITIONS: { [key: string]: CommandDefinition } = {
 		name: "help"
 	},
 	PWD: {
-		action:  () => window.location.href,
+		action: () => window.location.href,
 		description: "Show current URL",
 		name: "pwd"
 	}

@@ -1,10 +1,11 @@
 <script lang="ts">
-	import { historyLengthCutter } from "$lib/utils/command";
 	import { tick } from "svelte";
-	import AutoComplete from "./AutoComplete.svelte";
+
 	import { COMMANDS } from "$lib/constants/command";
-	import { isValidCommand } from "$lib/utils/command";
 	import type { CommandType } from "$lib/types/storage";
+	import { historyLengthCutter, isValidCommand } from "$lib/utils/command";
+
+	import AutoComplete from "./AutoComplete.svelte";
 	import {
 		clearStorageArr,
 		findAvailableCommand,

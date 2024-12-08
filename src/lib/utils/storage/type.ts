@@ -6,8 +6,8 @@ export type LocalStorageGetType = {
 	[K in LocalStorageCommonKeys]: K extends "COMMAND"
 		? CommandType[]
 		: K extends "TEST"
-		? TestType[]
-		: CountType;
+			? TestType[]
+			: CountType;
 };
 
 export type LocalStorageSetType = {

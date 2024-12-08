@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+
 import { findAvailableCommand } from "../../src/routes/components/UserInputForm/util";
 
 describe("findAvailableCommand()", () => {
