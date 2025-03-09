@@ -9,7 +9,9 @@ module.exports = {
 		"eslint:recommended",
 		"plugin:@typescript-eslint/recommended",
 		"plugin:svelte/recommended",
+		"plugin:import/recommended",
 		"plugin:@cspell/recommended",
+		"plugin:prettier/recommended",
 		"prettier"
 	],
 	overrides: [
@@ -45,6 +47,38 @@ module.exports = {
 						from: "test"
 					}
 				]
+			}
+		],
+		"import/order": [
+			"error",
+			{
+				alphabetize: {
+					caseInsensitive: true,
+					order: "asc"
+				},
+				groups: [
+					"builtin",
+					"external",
+					"internal",
+					"type",
+					"parent",
+					"sibling",
+					"index"
+				],
+				"newlines-between": "always",
+				pathGroups: [
+					{
+						group: "external",
+						pattern: "$lib/**",
+						position: "after"
+					},
+					{
+						group: "builtin",
+						pattern: "{svelte*/**}",
+						position: "before"
+					}
+				],
+				pathGroupsExcludedImportTypes: ["react"]
 			}
 		],
 		"sort-keys-fix/sort-keys-fix": [

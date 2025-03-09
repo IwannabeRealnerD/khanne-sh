@@ -1,3 +1,5 @@
+import { HELP_COMMAND } from "$lib/constants/command";
+
 import type { LocalStorageGetType, LocalStorageSetType } from "./type";
 
 export const resetLocalStorage = (key: keyof LocalStorageGetType) => {
@@ -25,4 +27,14 @@ export const setLocalStorageItem = <T extends keyof LocalStorageSetType>(
 ) => {
 	const serializedData = JSON.stringify(value);
 	localStorage.setItem(key, serializedData);
+};
+
+export const makeHelpOutput = () => {
+	let commandOutput = "Here are commands that you can use: \n";
+	Object.entries(HELP_COMMAND).forEach(([command, commandResult], index) => {
+		commandOutput = commandOutput.concat(
+			` ${index + 1}. ${command} : ${commandResult}\n`
+		);
+	});
+	return commandOutput;
 };

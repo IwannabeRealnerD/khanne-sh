@@ -1,26 +1,19 @@
+import { COMMAND_ACTIONS, COMMANDS } from "$lib/constants/command";
 import { TERMINAL_HISTORY_KEY } from "$lib/constants/localStorageKey";
+import type { TCommandValues } from "$lib/types/command";
 import type { CommandType } from "$lib/types/storage";
+import { historyLengthCutter } from "$lib/utils/command";
 import { getLocalStorageItem, setLocalStorageItem } from "$lib/utils/storage";
 
-import {
-	COMMAND_ACTIONS,
-	COMMANDS,
-	HELP_COMMAND,
-	type TCommandValues
-} from "./constant";
-
-export const isValidCommand = (userInputCommand: string) => {
-	const isValidInput = Object.values(COMMANDS).includes(
-		userInputCommand as TCommandValues
-	);
-	if (isValidInput) {
-		return "validInput";
-	}
-	return "invalidInput";
+export const findNextIndex = (targetArray: unknown[], currentIndex: number) => {
+	return targetArray.length - 1 <= currentIndex ? 0 : currentIndex + 1;
 };
 
-export const historyLengthCutter = <T>(commandArr: T[]): T[] => {
-	return commandArr.slice(-40);
+export const findPreviousIndex = (
+	targetArray: unknown[],
+	currentIndex: number
+) => {
+	return currentIndex - 1 < 0 ? targetArray.length - 1 : currentIndex - 1;
 };
 
 export const findAvailableCommand = (inputCommand: string) => {
@@ -60,14 +53,4 @@ export const putLocalStorageArr = (commandObj: CommandType) => {
 
 export const clearStorageArr = () => {
 	setLocalStorageItem(TERMINAL_HISTORY_KEY, []);
-};
-
-export const makeHelpOutput = () => {
-	let commandOutput = "Here are commands that you can use: \n";
-	Object.entries(HELP_COMMAND).forEach(([command, commandResult], index) => {
-		commandOutput = commandOutput.concat(
-			` ${index + 1}. ${command} : ${commandResult}\n`
-		);
-	});
-	return commandOutput;
 };

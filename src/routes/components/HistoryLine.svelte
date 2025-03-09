@@ -1,7 +1,11 @@
 <script lang="ts">
-	import { isValidCommand } from "../util";
+	import { isValidCommand } from "$lib/utils/command";
 
-	export let command: { command: string; result: string };
+	interface Props {
+		command: { command: string; result: string };
+	}
+
+	let { command }: Props = $props();
 </script>
 
 <article class="commandWrapper">

@@ -16,26 +16,32 @@
   </p>
 </div>
 
-- This project is a resume with a web based terminal style UI developed with svelte kit.
-
 <div align="center">
   <img src="https://img.shields.io/badge/svelte-FF3200?style=for-the-badge&logo=svelte&logoColor=white">
   <img src="https://img.shields.io/badge/vite-646CFF?style=for-the-badge&logo=vite&logoColor=white">
   <img src="https://img.shields.io/badge/vitest-6E9F18?style=for-the-badge&logo=vitest&logoColor=white">
 </div>
 
-## Deyployment
-- Deployed to [github pages](https://iwannaberealnerd.github.io/khanne-sh/)
+<div align="center">
+  <img src="images/screenshot.png" alt="screenshot" >
+</div>
+<p align="center">
+This project is a web based terminal style resume developed with svelte kit.
+</p>
+
+
+## Deployed link
+- [github pages](https://iwannaberealnerd.github.io/khanne-sh/)
 
 ## How to use
 ### Available Commands
 ```sh
-	about # Get information about this project,
-	blog # Open new window for khanne's blog,
-	clear # Clear history,
-	contact # Get khanne's contact information,
-	github # Open new window for khanne's GitHub ,
-	help # Display available commands,
+	about # Get information about this project
+	blog # Open new window for khanne's blog
+	clear # Clear history
+	contact # Get khanne's contact information
+	github # Open new window for khanne's GitHub 
+	help # Display available commands
 	pwd # Show current URL
 ```
 - Additional commands will be updated soon
@@ -71,3 +77,7 @@
 
 ## Contact
 khanne - iwannaberealnerd@gmail.com
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

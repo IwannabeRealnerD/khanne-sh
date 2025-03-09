@@ -5,7 +5,7 @@ import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 const config = {
 	kit: {
 		adapter: adapter(),
-		alias: { $routes: "src/routes" },
+		alias: { $routes: "src/routes", $settings: "src/settings" },
 		paths: {
 			base: process.env.NODE_ENV === "production" ? "/khanne-sh" : ""
 		}
